@@ -22,9 +22,11 @@ public class customPane extends Pane {
         
 
         Rectangle bg = new Rectangle(width, height);
-        bg.setFill(Color.WHITE);
+        bg.setFill(Color.GRAY);
         
-        //if(line.contains("right")){
+        
+        
+        //if(line.equals("right")){
             lineRight = new Rectangle(2, height);
             lineRight.setTranslateX(width - 2);
             lineRight.setFill(Color.BLACK);
@@ -44,11 +46,11 @@ public class customPane extends Pane {
         lineBot.setStroke(Color.BLACK);
 
 */
-        box = new VBox(5);
-        box.setTranslateX(25);
-        box.setTranslateY(25);
+        //box = new VBox(0);    //5
+        //box.setTranslateX(0); //25
+        //box.setTranslateY(0); //25
 
-        getChildren().addAll(bg, lineRight, box);
+        getChildren().addAll(bg, lineRight);
     } 
     
 }
