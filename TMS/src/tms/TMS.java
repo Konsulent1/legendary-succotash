@@ -59,8 +59,8 @@ public class TMS extends Application {
     public Parent createContent(){
         Pane root = new Pane();
         
-        int height = 700;
-        int width = 1200;
+        int height = 800;
+        int width = 1700;
         
         int menuHeight = height;
         int menuWidth =  (int) (width * 0.30);
