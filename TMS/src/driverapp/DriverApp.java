@@ -22,9 +22,12 @@ public class DriverApp extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-        Button btn = new Button();
-        btn.setText("Route");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
+        Button btnRoute = new Button();
+        Button btnReport = new Button();
+        btnRoute.setText("Route");
+        btnReport.setText("Report Delay");
+        
+        btnRoute.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
             public void handle(ActionEvent event) {
@@ -32,8 +35,17 @@ public class DriverApp extends Application {
             }
         });
         
+        btnReport.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                generateReport();
+            }
+        });
+        
         StackPane root = new StackPane();
-        root.getChildren().add(btn);
+        root.getChildren().add(btnRoute);
+        root.getChildren().add(btnReport);
         
         Scene scene = new Scene(root, 300, 600);
         
@@ -60,5 +72,10 @@ public class DriverApp extends Application {
         }
         
     }
+    
+    public void generateReport(){
+        
+    }
+    
     
 }
