@@ -24,8 +24,12 @@ public class DriverApp extends Application {
     public void start(Stage primaryStage) {
         Button btnRoute = new Button();
         Button btnReport = new Button();
+        btnRoute.setTranslateY(50);
         btnRoute.setText("Route");
         btnReport.setText("Report Delay");
+        
+        
+        
         
         btnRoute.setOnAction(new EventHandler<ActionEvent>() {
             
@@ -44,6 +48,7 @@ public class DriverApp extends Application {
         });
         
         StackPane root = new StackPane();
+        
         root.getChildren().add(btnRoute);
         root.getChildren().add(btnReport);
         
