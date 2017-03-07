@@ -5,6 +5,7 @@
  */
 package driverapp;
 
+import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -22,12 +23,12 @@ public class DriverApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         Button btn = new Button();
-        btn.setText("Say 'Hello World'");
+        btn.setText("Route");
         btn.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
+                printList();
             }
         });
         
@@ -47,6 +48,22 @@ public class DriverApp extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+        
+    }
+    
+    public void printList(){
+        Route route = new Route();
+        route.addToRoutes("Rema Larsgården");
+        route.addToRoutes("Kiwi Larsgården");
+        route.addToRoutes("Kiwi Ålesund Sentrum");
+        
+        ArrayList list = new ArrayList<String>();
+        
+        list = route.getRoutes();
+        
+        for(int i = 0; i < list.size(); i++ ){
+            System.out.println(list.get(i));
+        }
         
     }
     
