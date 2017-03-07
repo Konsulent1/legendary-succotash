@@ -60,7 +60,7 @@ public class TMS extends Application {
         Pane root = new Pane();
         
         int height = 800;
-        int width = 1700;
+        int width = 1800;
         
         int menuHeight = height;
         int menuWidth =  (int) (width * 0.30);
@@ -75,8 +75,8 @@ public class TMS extends Application {
         //System.out.println(width + " , " + height);
         
         
-        customPane menuPane = new customPane(menuWidth, menuHeight);
-        customPane contentPane = new customPane(contentWidth, contentHeight);
+        customPane menuPane = new customPane(menuWidth, menuHeight, "right");
+        customPane contentPane = new customPane(contentWidth, contentHeight, "noLine");
         contentPane.setTranslateX(menuWidth);
         
         root.getChildren().addAll(menuPane, contentPane);
