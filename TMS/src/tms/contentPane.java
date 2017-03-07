@@ -14,15 +14,15 @@ import javafx.scene.shape.Rectangle;
  *
  * @author Kristian
  */
-public class customPane extends Pane {
+public class contentPane extends Pane {
     private VBox box;
     Rectangle lineRight;
     
-    public customPane(int width, int height){
+    public contentPane(int width, int height){
         
 
         Rectangle bg = new Rectangle(width, height);
-        bg.setFill(Color.GRAY);
+        bg.setFill(Color.RED);
         bg.setStyle("-fx-padding: 0 0 0 0");
         
         
@@ -51,7 +51,7 @@ public class customPane extends Pane {
         //box.setTranslateX(0); //25
         //box.setTranslateY(0); //25
 
-        getChildren().addAll(bg, lineRight);
+        getChildren().addAll(bg);
     } 
     
 }

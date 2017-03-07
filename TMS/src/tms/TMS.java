@@ -51,11 +51,11 @@ public class TMS extends Application {
         //System.out.println(menuHeight + " , " + menuWidth);
         //System.out.println(contentHeight + " , " + contentWidth);
         
-        customPane menuPane = new customPane(menuWidth, menuHeight, "right");
-        customPane contentPane = new customPane(contentWidth, contentHeight, "noLine");
-        contentPane.setTranslateX(menuWidth);
+        customPane menuPane = new customPane(menuWidth, menuHeight);
+        contentPane contPane = new contentPane(contentWidth, contentHeight);
+        contPane.setTranslateX(menuWidth);
         
-        root.getChildren().addAll(menuPane, contentPane);
+        root.getChildren().addAll(menuPane, contPane);
         
         
         return root;
