@@ -28,39 +28,19 @@ public class TMS extends Application {
     @Override
     public void start(Stage primaryStage) {
         
-        Scene scene = new Scene(createContent());
-        /*
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
-            }
-        });
-        */
-        
-
-        
-        //root.getChildren().add(btn);
-        
-        
-        
-        //Scene scene = new Scene(root);
-        
-        primaryStage.setTitle("Hello World!");
-        //primaryStage.setMaximized(true);
+        Scene scene = new Scene(createContent(), 1350, 850);       
+        primaryStage.setTitle("Transport Management System");
         primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         primaryStage.show();
+        
     }
     
     public Parent createContent(){
         Pane root = new Pane();
         
-        int height = 800;
-        int width = 1700;
+        int height = 850;
+        int width = 1350;
         
         int menuHeight = height;
         int menuWidth =  (int) (width * 0.30);
@@ -68,15 +48,11 @@ public class TMS extends Application {
         int contentHeight = height;
         int contentWidth =  width - menuWidth;
         
-        //screen = Screen.getPrimary();
-        //Rectangle2D bounds = screen.getVisualBounds();
-        //int height = (int) bounds.getHeight() - 100;
-        //int width = (int) (bounds.getWidth() * 0.30);
-        //System.out.println(width + " , " + height);
+        //System.out.println(menuHeight + " , " + menuWidth);
+        //System.out.println(contentHeight + " , " + contentWidth);
         
-        
-        customPane menuPane = new customPane(menuWidth, menuHeight);
-        customPane contentPane = new customPane(contentWidth, contentHeight);
+        customPane menuPane = new customPane(menuWidth, menuHeight, "right");
+        customPane contentPane = new customPane(contentWidth, contentHeight, "noLine");
         contentPane.setTranslateX(menuWidth);
         
         root.getChildren().addAll(menuPane, contentPane);

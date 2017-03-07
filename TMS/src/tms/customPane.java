@@ -16,16 +16,24 @@ import javafx.scene.shape.Rectangle;
  */
 public class customPane extends Pane {
     private VBox box;
+    Rectangle lineRight;
     
-    public customPane(int width, int height){
+    public customPane(int width, int height, String line){
+        
 
         Rectangle bg = new Rectangle(width, height);
-        bg.setFill(Color.rgb(45, 65, 35, 0.5));
+        bg.setFill(Color.GRAY);
         
-        Rectangle lineRight = new Rectangle(2, height);
-        lineRight.setTranslateX(width - 2);
-        lineRight.setFill(Color.rgb(25, 250, 25));
-        lineRight.setStroke(Color.BLACK);
+        
+        
+        //if(line.equals("right")){
+            lineRight = new Rectangle(2, height);
+            lineRight.setTranslateX(width - 2);
+            lineRight.setFill(Color.BLACK);
+            lineRight.setStroke(Color.BLACK);
+            //bg.setFill(Color.GRAY);
+        //}
+
 
         /*
         Rectangle lineTop = new Rectangle(width, 2);
@@ -38,11 +46,11 @@ public class customPane extends Pane {
         lineBot.setStroke(Color.BLACK);
 
 */
-        box = new VBox(5);
-        box.setTranslateX(25);
-        box.setTranslateY(25);
+        //box = new VBox(0);    //5
+        //box.setTranslateX(0); //25
+        //box.setTranslateY(0); //25
 
-        getChildren().addAll(bg, lineRight, box);
+        getChildren().addAll(bg, lineRight);
     } 
     
 }
