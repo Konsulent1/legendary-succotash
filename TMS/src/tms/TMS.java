@@ -28,7 +28,7 @@ public class TMS extends Application {
     @Override
     public void start(Stage primaryStage) {
         
-        Scene scene = new Scene(createContent(), 1350, 850);       
+        Scene scene = new Scene(createContent(), 1339, 839);  
         primaryStage.setTitle("Transport Management System");
         primaryStage.setResizable(false);
         primaryStage.setScene(scene);
@@ -38,6 +38,7 @@ public class TMS extends Application {
     
     public Parent createContent(){
         Pane root = new Pane();
+        root.setStyle("-fx-padding: 0 0 0 0");
         
         int height = 850;
         int width = 1350;
@@ -52,7 +53,9 @@ public class TMS extends Application {
         //System.out.println(contentHeight + " , " + contentWidth);
         
         customPane menuPane = new customPane(menuWidth, menuHeight);
+        menuPane.setStyle("-fx-padding: 0 0 0 0");
         contentPane contPane = new contentPane(contentWidth, contentHeight);
+        contPane.setStyle("-fx-padding: 0 0 0 0");
         contPane.setTranslateX(menuWidth);
         
         root.getChildren().addAll(menuPane, contPane);
