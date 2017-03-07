@@ -20,7 +20,9 @@ public class Route {
     }
     
     public ArrayList getRoutes(){
-        
+        addToRoutes("Rema Larsgården");
+        addToRoutes("Kiwi Larsgården");
+        addToRoutes("Kiwi Ålesund Sentrum");
         return this.routeList;
         
     }

@@ -52,12 +52,7 @@ public class DriverApp extends Application {
     
     public void printList(){
         Route route = new Route();
-        route.addToRoutes("Rema Larsgården");
-        route.addToRoutes("Kiwi Larsgården");
-        route.addToRoutes("Kiwi Ålesund Sentrum");
-        
-        ArrayList list = new ArrayList<String>();
-        
+        ArrayList list = new ArrayList<String>();  
         list = route.getRoutes();
         
         for(int i = 0; i < list.size(); i++ ){
