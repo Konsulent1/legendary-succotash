@@ -22,7 +22,7 @@ public class contentPane extends Pane {
         
 
         Rectangle bg = new Rectangle(width, height);
-        bg.setFill(Color.RED);
+        bg.setFill(Color.WHITE);
         bg.setStyle("-fx-padding: 0 0 0 0");
         this.setStyle("-fx-padding: 0 0 0 0");
         

@@ -58,6 +58,8 @@ public class TMS extends Application {
         contPane.setStyle("-fx-padding: 0 0 0 0");
         contPane.setTranslateX(menuWidth);
         
+        
+        
         root.getChildren().addAll(menuPane, contPane);
         
         

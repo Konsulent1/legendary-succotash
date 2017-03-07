@@ -21,7 +21,7 @@ public class customPane extends Pane {
     public customPane(int width, int height){
 
         Rectangle bg = new Rectangle(width, height);
-        bg.setFill(Color.GRAY);
+        bg.setFill(Color.WHITE);
         bg.setStyle("-fx-padding: 0 0 0 0");
         this.setStyle("-fx-padding: 0 0 0 0");
         
