@@ -101,7 +101,7 @@ public class ButtonStyles {
 		            "-fx-background-radius: 9,8,5,4,3;" +
 		            "-fx-padding: 15 30 15 30;" +
 		            "-fx-font-family: "+"Helvetica"+";" +
-		            "-fx-font-size: 18px;" +
+		            "-fx-font-size: 12px;" +
 		            "-fx-font-weight: bold;" +
 		            "-fx-text-fill: white;" +
 					"-fx-effect: dropshadow( three-pass-box , rgba(255,255,255,0.2) , 1, 0.0 , 0 , 1);");	

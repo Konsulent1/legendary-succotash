@@ -15,8 +15,9 @@ public class getContent {
 
 	public Pane getHome(){
 		ContentBox home = new ContentBox(contentWidth, contentHeight);
-		home.setFill(Color.DARKRED);
+		//home.setFill(Color.DARKRED);
 		//home.setFill(Color.TRANSPARENT);
+                home.setFill(Color.WHITE);
 		return home;	
 	}
 	
