@@ -22,11 +22,29 @@ public class DriverApp extends Application {
     
     @Override
     public void start(Stage primaryStage) {
+        
+        StackPane root = new StackPane();
+        
+        
         Button btnRoute = new Button();
         Button btnReport = new Button();
+        Button btnSign = new Button();
+        Button btnExportDocument = new Button();
+        Button btnLogout = new Button();
+        
+        root.getChildren().addAll(btnRoute, btnReport, btnSign, btnExportDocument, btnLogout);
+        
+        btnRoute.setTranslateY(-200);
+        btnReport.setTranslateY(-150);
+        btnSign.setTranslateY(-100);
+        btnExportDocument.setTranslateY(-50);
+        btnLogout.setTranslateY(0);
         
         btnRoute.setText("Route");
         btnReport.setText("Report Delay");
+        btnSign.setText("Sign");
+        btnExportDocument.setText("Export Document");
+        btnLogout.setText("Logout");
         
         
         
@@ -47,10 +65,33 @@ public class DriverApp extends Application {
             }
         });
         
-        StackPane root = new StackPane();
+        btnSign.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                generateReport();
+            }
+        });
         
-        root.getChildren().add(btnRoute);
-        root.getChildren().add(btnReport);
+        btnExportDocument.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                generateReport();
+            }
+        });
+        
+        btnLogout.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                generateReport();
+            }
+        });
+        
+        
+        
+        
         
         Scene scene = new Scene(root, 300, 600);
         
@@ -67,7 +108,7 @@ public class DriverApp extends Application {
         launch(args);
     }
     
-    public void printList(){
+    public void printList() {
         Route route = new Route();
         ArrayList list = new ArrayList<String>(); 
         list = route.getRoutes();
@@ -78,8 +119,20 @@ public class DriverApp extends Application {
         
     }
     
-    public void generateReport(){
-        System.out.println("test");
+    public void generateReport()    {
+        System.out.println("All goods delivered");
+    }
+    
+    public void sign()  {
+        
+    }
+    
+    public void exportDocument()    {
+        
+    }
+    
+    public void logout()    {
+        
     }
     
     
