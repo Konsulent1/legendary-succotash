@@ -6,11 +6,15 @@
 package driverapp;
 
 import java.util.ArrayList;
+import java.util.Optional;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.TablePosition;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -61,7 +65,16 @@ public class DriverApp extends Application {
             
             @Override
             public void handle(ActionEvent event) {
-                generateReport();
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setHeaderText("Are you going to be late??");
+                alert.setContentText("Are you sure you want to be late?");
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.OK)
+                {
+                    System.out.println("You are going to be late");
+                } else
+                {
+                }
             }
         });
         
