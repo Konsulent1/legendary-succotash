@@ -88,7 +88,7 @@ public class Main extends Application {
 					width = stage.getWidth();
 					height = stage.getHeight();
 					root.getChildren().clear();
-					responsiveContent((int) (width), (int) (height));
+					responsiveContent2((int) (width), (int) (height));
 				}
 			}
 		});
@@ -108,7 +108,7 @@ public class Main extends Application {
 					width = stage.getWidth();
 					height = stage.getHeight();
 					root.getChildren().clear();
-					responsiveContent((int) (width), (int) (height));
+					responsiveContent2((int) (width), (int) (height));
 				}
 			}
 		});
@@ -220,6 +220,134 @@ public class Main extends Application {
 	}
 
 	public Parent responsiveContent(int width, int height) {
+		widthOfScreen = width;
+		heightOfScreen = height;
+		// CREATING THE MAIN PANE (WILL BE DISPLAYED WHEN A USER HAVE LOGGED IN
+		// TO THE SYSTEM)
+		// CONTAINS MENU AND CONTENT PANE
+		Pane main = new Pane();
+
+		// VARIABLES NEEDED IN THE NEXT SECTION
+		int widthOfMenu = (int) (widthOfScreen * 0.20);
+		int heightOfMenu = heightOfScreen;
+		int widthOfContent = (int) (widthOfScreen * 0.80);
+		int heightOfContent = heightOfScreen;
+		//Buttons
+		int prefWidth = (int) (widthOfMenu * 0.65);
+		int prefHeight =(int) (heightOfMenu * 0.1);
+
+		get = new getContent(widthOfContent, heightOfScreen);
+
+		// CREATING THE MENU PANE. THIS IS WHERE ALL THE MENU ITEMS WILL BE
+		// LOCATED
+		MenuBox menu = new MenuBox(widthOfMenu, heightOfScreen);
+		menu.setFill(Color.BLACK);
+
+
+		// CREATING THE CONTENT PANE. THIS IS WHERE THE CONTENT WILL BE
+		// DISPLAYED
+		MenuBox content = new MenuBox(widthOfContent, heightOfScreen);
+		content.setFill(Color.DARKGOLDENROD);
+		content.setTranslateX(widthOfScreen * 0.20);
+		content.getChildren().clear();
+		content.getChildren().addAll(get.getHome());
+
+		// HOME BUTTON
+		Button home = new Button("Home");
+		home.setStyle(buttonStyles.getButtonStyle("iPadDark"));
+		home.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				home.setStyle("-fx-background-color:#dae7f3;");
+			}
+		});
+		home.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				home.setStyle(buttonStyles.getButtonStyle("iPadDark"));
+			}
+		});
+		home.setPrefSize(prefWidth, prefHeight);
+		home.setTranslateX((widthOfMenu / 2) - (prefWidth / 2));
+		home.setTranslateY(heightOfScreen * 0.1);
+		home.setOnAction(e -> {
+			// System.out.println("HOME CLICKED");
+			content.getChildren().clear();
+			content.getChildren().add(get.getHome());
+		});
+
+		// SCHEDULE BUTTON
+		Button schedule = new Button("Schedule");
+		schedule.setStyle(buttonStyles.getButtonStyle("iPadDark"));
+		schedule.setPrefSize(prefWidth, prefHeight);
+		schedule.setTranslateX((widthOfMenu / 2) - (prefWidth / 2));
+		schedule.setTranslateY((heightOfScreen * 0.2) + 10);
+		schedule.setOnAction(e -> {
+			// System.out.println("SCHEDULE CLICKED");
+			content.getChildren().clear();
+			content.getChildren().add(get.getSchedule());
+		});
+
+		// LOAD BUTTON
+		Button load = new Button("Load");
+		load.setStyle(buttonStyles.getButtonStyle("iPadDark"));
+		load.setPrefSize(prefWidth, prefHeight);
+		load.setTranslateX((widthOfMenu / 2) - (prefWidth / 2));
+		load.setTranslateY((heightOfScreen * 0.3) + 20);
+		load.setOnAction(e -> {
+			// System.out.println("LOAD CLICKED");
+			content.getChildren().clear();
+			content.getChildren().add(get.getLoad());
+		});
+
+		// UNLOAD BUTTON
+		Button unload = new Button("Unload");
+		unload.setStyle(buttonStyles.getButtonStyle("iPadDark"));
+		unload.setPrefSize(prefWidth, prefHeight);
+		unload.setTranslateX((widthOfMenu / 2) - (prefWidth / 2));
+		unload.setTranslateY((heightOfScreen * 0.4) + 30);
+		unload.setOnAction(e -> {
+			// System.out.println("UNLOAD CLICKED");
+			content.getChildren().clear();
+			content.getChildren().add(get.getUnload());
+		});
+
+		// EXPORT DOCUMENT BUTTON
+		Button exportDocument = new Button("Export document");
+		exportDocument.setStyle(buttonStyles.getButtonStyle("iPadDark"));
+		exportDocument.setPrefSize(prefWidth, prefHeight);
+		exportDocument.setTranslateX((widthOfMenu / 2) - (prefWidth / 2));
+		exportDocument.setTranslateY((heightOfScreen * 0.5) + 40);
+		exportDocument.setOnAction(e -> {
+			// System.out.println("EXPORT DOCUMENT CLICKED");
+			content.getChildren().clear();
+			content.getChildren().add(get.getExportDocument());
+		});
+
+		// LOG OUT BUTTON
+		Button logout = new Button("Log out");
+		logout.setStyle(buttonStyles.getButtonStyle("roundRed"));
+		logout.setPrefSize(prefWidth, prefHeight);
+		logout.setTranslateX((widthOfMenu / 2) - (prefWidth / 2));
+		logout.setTranslateY(heightOfScreen - prefHeight - (heightOfScreen * 0.1));
+		logout.setOnAction(e -> {
+			nameInput.clear();
+			passInput.clear();
+			loginFailed.setVisible(false);
+			loggedIn = false;
+			root.getChildren().clear();
+			root = (Pane) responsiveLogin(width, height);
+		});
+
+		menu.getChildren().addAll(home, schedule, load, unload, exportDocument, logout);
+
+		root.getChildren().addAll(menu, content);
+
+		return root;
+
+	}
+        
+        public Parent responsiveContent2(int width, int height) {
 		widthOfScreen = width;
 		heightOfScreen = height;
 		// CREATING THE MAIN PANE (WILL BE DISPLAYED WHEN A USER HAVE LOGGED IN
