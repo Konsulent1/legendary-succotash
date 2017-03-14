@@ -6,6 +6,7 @@
 package driverapp;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Optional;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -24,11 +25,13 @@ import javafx.stage.Stage;
  */
 public class DriverApp extends Application {
     
+    private ArrayList<Rapport> reportList;
+            
     @Override
     public void start(Stage primaryStage) {
         
         StackPane root = new StackPane();
-        
+        reportList = new ArrayList<>();
         
         Button btnRoute = new Button();
         Button btnReport = new Button();
@@ -65,7 +68,7 @@ public class DriverApp extends Application {
             
             @Override
             public void handle(ActionEvent event) {
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                /**Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setHeaderText("Are you going to be late??");
                 alert.setContentText("Are you sure you want to be late?");
                 Optional<ButtonType> result = alert.showAndWait();
@@ -74,6 +77,28 @@ public class DriverApp extends Application {
                     System.out.println("You are going to be late");
                 } else
                 {
+                }**/
+                AddDelayDialog dDialog = new AddDelayDialog();
+                Optional<Rapport> result = dDialog.showAndWait();
+                if (dDialog.isButtonOK())
+                {
+                    try
+                    {
+                        reportList.add(new Rapport(dDialog.getDelayReason(), dDialog.getDelayInMin()));
+                    } catch (InputMismatchException e)
+                    {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setHeaderText("ERROR");
+                        alert.setContentText("Invalid entry");
+                    }catch (IllegalArgumentException e)
+                    {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setHeaderText("ERROR");
+                        alert.setContentText("The report is already in the list of literature");
+                    }
+                } else
+                {
+                    System.out.println("Error");
                 }
             }
         });
