@@ -24,7 +24,7 @@ public class DriverApp extends Application {
     public void start(Stage primaryStage) {
         Button btnRoute = new Button();
         Button btnReport = new Button();
-        btnRoute.setTranslateY(50);
+        
         btnRoute.setText("Route");
         btnReport.setText("Report Delay");
         
@@ -69,7 +69,7 @@ public class DriverApp extends Application {
     
     public void printList(){
         Route route = new Route();
-        ArrayList list = new ArrayList<String>();  
+        ArrayList list = new ArrayList<String>(); 
         list = route.getRoutes();
         
         for(int i = 0; i < list.size(); i++ ){
@@ -79,7 +79,7 @@ public class DriverApp extends Application {
     }
     
     public void generateReport(){
-        
+        System.out.println("test");
     }
     
     
