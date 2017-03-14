@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Wearhouse;
+package Warehouse;
 
 /**
  *
  * @author Vinh
  */
-public class Schedule {
+public class ExportDoc {
     
 }
