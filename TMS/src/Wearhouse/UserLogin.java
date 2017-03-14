@@ -82,27 +82,4 @@ public class UserLogin
 
     }
     
-<<<<<<< HEAD
-    private String userId;
-    private String userPw;
-    
-    UserLogin(String userId, String userPw)
-    {
-        this.userId = userId;
-        this.userPw = userPw;
-    }
-    
-    public String getUserId()
-    {
-        return userId;
-    }
-    
-    public String getUserPw()
-    {
-        return userPw;
-    }
-    
-=======
-            
->>>>>>> 7f83aa627782f2362412a14080bdabe4b963928d
 }
