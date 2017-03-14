@@ -53,7 +53,9 @@ public class DriverApp extends Application {
             
             @Override
             public void handle(ActionEvent event) {
-                printList();
+                
+                //Logikk her
+                
             }
         });
         
@@ -61,7 +63,9 @@ public class DriverApp extends Application {
             
             @Override
             public void handle(ActionEvent event) {
-                generateReport();
+                
+                //Logikk her
+                
             }
         });
         
@@ -69,7 +73,9 @@ public class DriverApp extends Application {
             
             @Override
             public void handle(ActionEvent event) {
-                generateReport();
+               
+                //Logikk her
+                
             }
         });
         
@@ -77,7 +83,9 @@ public class DriverApp extends Application {
             
             @Override
             public void handle(ActionEvent event) {
-                generateReport();
+                
+                //Logikk her
+                
             }
         });
         
@@ -85,7 +93,9 @@ public class DriverApp extends Application {
             
             @Override
             public void handle(ActionEvent event) {
-                generateReport();
+              
+                //logikk her
+                
             }
         });
         
