@@ -361,8 +361,8 @@ public class Main extends Application {
                 //Buttons
 		int prefWidth = (int) (widthOfMenu * 0.65);
 		int prefHeight =(int) (heightOfMenu * 0.1);
-		int widthOfContent = (int) (widthOfScreen * 0.74); //- ((widthOfMenu / 2) - (prefWidth / 2)));
-		int heightOfContent = (int) (heightOfScreen * 0.8);	
+		int widthOfContent = (int) (widthOfScreen * 0.75); //- ((widthOfMenu / 2) - (prefWidth / 2)));
+		int heightOfContent = (int) ((heightOfScreen * 0.8) - 10 + (widthOfMenu / 2) - (prefWidth / 2));	
 
 		get = new getContent(widthOfContent, heightOfContent);
 
@@ -377,7 +377,8 @@ public class Main extends Application {
 		MenuBox content = new MenuBox(widthOfContent, heightOfContent);
 		content.setFill(Color.DARKGOLDENROD);
 		content.setTranslateX(widthOfScreen * 0.20);
-                content.setTranslateY(heightOfScreen * 0.10);
+                //content.setTranslateY(heightOfScreen * 0.10);
+                content.setTranslateY((widthOfMenu / 2) - (prefWidth / 2));
 		content.getChildren().clear();
 		content.getChildren().addAll(get.getHome());
 
@@ -398,7 +399,8 @@ public class Main extends Application {
 		});
 		home.setPrefSize(prefWidth, prefHeight);
 		home.setTranslateX((widthOfMenu / 2) - (prefWidth / 2));
-		home.setTranslateY(heightOfScreen * 0.1);
+                //home.setTranslateY(heightOfScreen * 0.1);
+		home.setTranslateY((widthOfMenu / 2) - (prefWidth / 2));
 		home.setOnAction(e -> {
 			// System.out.println("HOME CLICKED");
 			content.getChildren().clear();
@@ -410,7 +412,8 @@ public class Main extends Application {
 		schedule.setStyle(buttonStyles.getButtonStyle("iPadDark"));
 		schedule.setPrefSize(prefWidth, prefHeight);
 		schedule.setTranslateX((widthOfMenu / 2) - (prefWidth / 2));
-		schedule.setTranslateY((heightOfScreen * 0.2) + 10);
+		//schedule.setTranslateY((heightOfScreen * 0.2) + 10);
+                schedule.setTranslateY((widthOfMenu / 2) - (prefWidth / 2) + (heightOfScreen * 0.1) + 10);
 		schedule.setOnAction(e -> {
 			// System.out.println("SCHEDULE CLICKED");
 			content.getChildren().clear();
@@ -422,7 +425,8 @@ public class Main extends Application {
 		load.setStyle(buttonStyles.getButtonStyle("iPadDark"));
 		load.setPrefSize(prefWidth, prefHeight);
 		load.setTranslateX((widthOfMenu / 2) - (prefWidth / 2));
-		load.setTranslateY((heightOfScreen * 0.3) + 20);
+		//load.setTranslateY((heightOfScreen * 0.3) + 20);
+                load.setTranslateY((widthOfMenu / 2) - (prefWidth / 2) + (heightOfScreen * 0.2) + 20);
 		load.setOnAction(e -> {
 			// System.out.println("LOAD CLICKED");
 			content.getChildren().clear();
@@ -434,7 +438,8 @@ public class Main extends Application {
 		unload.setStyle(buttonStyles.getButtonStyle("iPadDark"));
 		unload.setPrefSize(prefWidth, prefHeight);
 		unload.setTranslateX((widthOfMenu / 2) - (prefWidth / 2));
-		unload.setTranslateY((heightOfScreen * 0.4) + 30);
+		//unload.setTranslateY((heightOfScreen * 0.4) + 30);
+                unload.setTranslateY((widthOfMenu / 2) - (prefWidth / 2) + (heightOfScreen * 0.3) + 30);
 		unload.setOnAction(e -> {
 			// System.out.println("UNLOAD CLICKED");
 			content.getChildren().clear();
@@ -446,7 +451,8 @@ public class Main extends Application {
 		exportDocument.setStyle(buttonStyles.getButtonStyle("iPadDark"));
 		exportDocument.setPrefSize(prefWidth, prefHeight);
 		exportDocument.setTranslateX((widthOfMenu / 2) - (prefWidth / 2));
-		exportDocument.setTranslateY((heightOfScreen * 0.5) + 40);
+		//exportDocument.setTranslateY((heightOfScreen * 0.5) + 40);
+                exportDocument.setTranslateY((widthOfMenu / 2) - (prefWidth / 2) + (heightOfScreen * 0.4) + 40);
 		exportDocument.setOnAction(e -> {
 			// System.out.println("EXPORT DOCUMENT CLICKED");
 			content.getChildren().clear();
