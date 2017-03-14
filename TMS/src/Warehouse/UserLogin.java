@@ -1,4 +1,4 @@
-package Wearhouse;
+package Warehouse;
 
 import java.util.HashMap;
 import java.util.Iterator;
