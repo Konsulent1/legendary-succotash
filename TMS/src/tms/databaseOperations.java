@@ -44,5 +44,22 @@ public class databaseOperations implements Closeable {
     {
         // TODO
     }
+    
+    /**
+     * Gets the ResultSet object returned after executing a PreparedStatement object. 
+     * @param preparedStatement 
+     * @return 
+     */
+    public ResultSet getResultSet(String preparedStatement){
+        ResultSet results = null;
+        try{
+            PreparedStatement statement = connection.prepareStatement(preparedStatement);
+            results = statement.executeQuery();
+        } catch (SQLException SQLEx) {
+            System.out.println(SQLEx.getMessage());
+            SQLEx.printStackTrace();
+        }
+        return results;
+    }
 
 }
