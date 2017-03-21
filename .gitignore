@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+TMS/build/
+TMS/dist/
+TMS/nbproject/jfx-impl.xml
+TMS/nbproject/
+=======
 /TMS/nbproject/
 /TMS/build/
 /TMS/dist/
+>>>>>>> d58737105c55bbe41be91dadfd1ac67f95fbde86
