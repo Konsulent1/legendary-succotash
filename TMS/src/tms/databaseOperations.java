@@ -8,6 +8,7 @@ public class databaseOperations implements Closeable {
     
     private final String connString = "jdbc:sqlserver://hallvbjo-Konsulent1.uials.no;databaseName=Konsulent1;username=halvbjo;password=KEf8r1Q9gRZZ";
     private Connection connection;
+    private PreparedStatement sampleStatement;
     
     public databaseOperations(){
         
@@ -42,6 +43,7 @@ public class databaseOperations implements Closeable {
      */
     private void createStatements() throws SQLException
     {
+        sampleStatement = connection.prepareStatement("SELECT * FROM *");
         // TODO
     }
     
