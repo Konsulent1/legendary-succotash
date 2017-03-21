@@ -90,16 +90,19 @@ public class DriverApp extends Application {
                 {
                     try
                     {
-                        String report = "" + dDialog.getDelayReason() + " " + dDialog.getDelayInMin();
-                        
-
+                        String delayReason = "" + dDialog.getDelayReason();
+                        String delayTime = "" + dDialog.getDelayInMin();
+     /**                   
+INSERT INTO [dbo].[PortOfOrigin] ([OriginID] , [Port])
+VALUES	(1,	'PortOfAalesund'); **/
 
                         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");	
                         Connection conn = DriverManager.getConnection("jdbc:sqlserver:hallvbjo-Konsulent1.uials.no;user=hallvbjo;password=hallvbjo;database=Konsulent1");
                         System.out.println("test");
                         Statement sta = conn.createStatement();
-                        String Sql = "select * from testing_table";
+                        String Sql = "Insert into Delay" + "VALUES (" + delayReason + ", " + delayTime + ")";
                         ResultSet rs = sta.executeQuery(Sql);
+                        conn.close();
                 
                     } catch (InputMismatchException e)
                     {
