@@ -68,11 +68,10 @@ public class DriverApp extends Application {
             
             @Override
             public void handle(ActionEvent event) {
-<<<<<<< HEAD
                 
                 //Logikk her
-                
-=======
+      
+
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setHeaderText("Are you going to be late??");
                 alert.setContentText("Are you sure you want to be late?");
@@ -83,7 +82,7 @@ public class DriverApp extends Application {
                 } else
                 {
                 }
->>>>>>> Hallvard
+
             }
         });
         
