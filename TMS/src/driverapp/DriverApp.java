@@ -94,7 +94,7 @@ public class DriverApp extends Application {
                         String delayTime = "" + dDialog.getDelayInMin();
      /**                   
 INSERT INTO [dbo].[PortOfOrigin] ([OriginID] , [Port])
-VALUES	(1,	'PortOfAalesund'); **/
+VALUES	(1,	'PortOfAdasalesund'); **/
 
                         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");	
                         Connection conn = DriverManager.getConnection("jdbc:sqlserver:hallvbjo-Konsulent1.uials.no;user=hallvbjo;password=hallvbjo;database=Konsulent1");
