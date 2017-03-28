@@ -23,9 +23,20 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
+import javafx.scene.layout.GridPane;
+import javafx.util.Pair;
 
 /**
  *
@@ -33,19 +44,33 @@ import javafx.application.Platform;
  */
 public class DriverApp extends Application {
     
+    
+    private Login loginObj;
+    private Route route;
+    
             
     @Override
     public void start(Stage primaryStage) {
         
-        StackPane root = new StackPane();
+        route = new Route();
         
+        StackPane root = new StackPane();
+        StackPane login = new StackPane();
+        
+        Button btnLogin = new Button();
         Button btnRoute = new Button();
         Button btnReport = new Button();
         Button btnSign = new Button();
         Button btnExportDocument = new Button();
         Button btnExit = new Button();
         
+        this.loginObj = new Login();
+        while(loginObj.getPassword() == null && loginObj.getUsername() == null){
+        loginObj.loginDialog();
+        }
+        
         root.getChildren().addAll(btnRoute, btnReport, btnSign, btnExportDocument, btnExit);
+        login.getChildren().addAll(btnLogin);
         
         btnRoute.setTranslateY(-200);
         btnReport.setTranslateY(-150);
@@ -57,17 +82,26 @@ public class DriverApp extends Application {
         btnReport.setText("Report Delay");
         btnSign.setText("Sign");
         btnExportDocument.setText("Export Document");
-        btnExit.setText("Exit");
+        btnExit.setText("Logout");
         
         
         
         
         btnRoute.setOnAction(new EventHandler<ActionEvent>() {
             
+            HashMap routeList = route.getRoutes();
+                ArrayList listValues = new ArrayList<String>(routeList.values());
+                ArrayList listKeys = new ArrayList<String>(routeList.keySet());
+            
             @Override
             public void handle(ActionEvent event) {
                 
-                //Logikk her
+                
+                for(int i = 0; i<listValues.size(); i++){
+                    System.out.println(listValues.get(i) + " " + listKeys.get(i).toString() + "km");
+                }
+                
+                
                 
                 
             }
@@ -77,13 +111,12 @@ public class DriverApp extends Application {
             
             @Override
             public void handle(ActionEvent event) {
-<<<<<<< HEAD
+
                 
                 //Logikk her
       
 
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-=======
                 /**Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 >>>>>>> f311f63ca3bc966fff1be1a185cd27d696fc03a4
                 alert.setHeaderText("Are you going to be late??");
@@ -117,12 +150,12 @@ VALUES	(1,	'PortOfAdasalesund'); **/
                 
                     } catch (InputMismatchException e)
                     {
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText("ERROR");
                         alert.setContentText("Invalid entry");
                     }catch (IllegalArgumentException e)
                     {
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText("ERROR");
                         alert.setContentText("The report is already in the list of reports");
                     } catch (ClassNotFoundException ex)
@@ -160,15 +193,13 @@ VALUES	(1,	'PortOfAdasalesund'); **/
             }
         });
         
-        btnExit.setOnAction(new EventHandler<ActionEvent>() {
+        /*btnExit.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
             public void handle(ActionEvent event) {
-<<<<<<< HEAD
               
                 //logikk her
                 
-=======
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setHeaderText("Exit application?");
                 alert.setContentText("Are you sure you want to exit?");
@@ -177,9 +208,8 @@ VALUES	(1,	'PortOfAdasalesund'); **/
                 {
                     Platform.exit();
                 }
->>>>>>> f311f63ca3bc966fff1be1a185cd27d696fc03a4
             }
-        });
+        });*/
         
         
         
@@ -200,17 +230,6 @@ VALUES	(1,	'PortOfAdasalesund'); **/
         launch(args);
     }
     
-    public void printList() {
-        Route route = new Route();
-        ArrayList list = new ArrayList<String>(); 
-        list = route.getRoutes();
-        
-        for(int i = 0; i < list.size(); i++ ){
-            System.out.println(list.get(i));
-        }
-        
-    }
-    
     public void generateReport()    {
         System.out.println("All goods delivered");
     }
@@ -226,6 +245,9 @@ VALUES	(1,	'PortOfAdasalesund'); **/
     public void logout()    {
         
     }
+    
+    
+    
     
     
 }

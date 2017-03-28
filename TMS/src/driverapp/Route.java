@@ -6,6 +6,8 @@
 package driverapp;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Random;
 
 /**
  *
@@ -13,24 +15,46 @@ import java.util.ArrayList;
  */
 public class Route {
     
-    private ArrayList routeList;
+    private HashMap routeList;
     
     public Route()  {
-        routeList = new ArrayList<String>();
+        routeList = new HashMap();
     }
     
-    public ArrayList getRoutes(){
-        addToRoutes("Rema Larsgården");
-        addToRoutes("Kiwi Larsgården");
-        addToRoutes("Kiwi Ålesund Sentrum");
+    /**
+     * TO BE IMPLEMENTED WITH SQL
+     * @return HashMap of routes
+     */
+    public HashMap getRoutes(){
+        addToRoutes("Rema 1000 Larsgården", getDistance());
+        addToRoutes("Kiwi Larsgården", getDistance());
+        addToRoutes("Kiwi Ålesund Sentrum", getDistance());
+        addToRoutes("Spar Larsgården", getDistance());
+        addToRoutes("Coop Larsgården", getDistance());
+        addToRoutes("Rema 1000 Ålesund Sentrum", getDistance());
+        
         return this.routeList;
         
     }
     
-    public void addToRoutes(String route){
+    public void addToRoutes(String route, int distance){
         
-        this.routeList.add(route);
+        this.routeList.put(distance, route);
         
+    }
+    /**
+     * dummy class, returns a random number between 0 and 1000km. To be 
+     * implemented with sql
+     * return kilometers
+    */
+    public int getDistance(){
+        
+        Random rand = new Random();
+       
+        
+        int result = rand.nextInt(1000);
+        
+        return result;
     }
     
 }
