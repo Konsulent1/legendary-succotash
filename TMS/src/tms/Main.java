@@ -289,6 +289,20 @@ public class Main extends Application {
 		schedule.setTranslateX((widthOfMenu / 2) - (prefWidth / 2));
 		//schedule.setTranslateY((heightOfScreen * 0.2) + 10);
                 schedule.setTranslateY((widthOfMenu / 2) - (prefWidth / 2) + (heightOfScreen * 0.1) + 10);
+                schedule.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				//home.setStyle("-fx-background-color:#dae7f3;");
+                                schedule.setStyle(buttonStyles.getButtonStyle("iPhone2"));
+			}
+		});
+		schedule.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+                                
+				schedule.setStyle(buttonStyles.getButtonStyle("iPadDark"));
+			}
+		});
 		schedule.setOnAction(e -> {
 			// System.out.println("SCHEDULE CLICKED");
 			content.getChildren().clear();
@@ -311,6 +325,20 @@ public class Main extends Application {
 		load.setTranslateX((widthOfMenu / 2) - (prefWidth / 2));
 		//load.setTranslateY((heightOfScreen * 0.3) + 20);
                 load.setTranslateY((widthOfMenu / 2) - (prefWidth / 2) + (heightOfScreen * 0.2) + 20);
+                load.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				//home.setStyle("-fx-background-color:#dae7f3;");
+                                load.setStyle(buttonStyles.getButtonStyle("iPhone2"));
+			}
+		});
+		load.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+                                
+				load.setStyle(buttonStyles.getButtonStyle("iPadDark"));
+			}
+		});
 		load.setOnAction(e -> {
 			// System.out.println("LOAD CLICKED");
 			content.getChildren().clear();
@@ -324,6 +352,20 @@ public class Main extends Application {
 		unload.setTranslateX((widthOfMenu / 2) - (prefWidth / 2));
 		//unload.setTranslateY((heightOfScreen * 0.4) + 30);
                 unload.setTranslateY((widthOfMenu / 2) - (prefWidth / 2) + (heightOfScreen * 0.3) + 30);
+                unload.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				//home.setStyle("-fx-background-color:#dae7f3;");
+                                unload.setStyle(buttonStyles.getButtonStyle("iPhone2"));
+			}
+		});
+		unload.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+                                
+				unload.setStyle(buttonStyles.getButtonStyle("iPadDark"));
+			}
+		});
 		unload.setOnAction(e -> {
 			// System.out.println("UNLOAD CLICKED");
 			content.getChildren().clear();
@@ -346,6 +388,20 @@ public class Main extends Application {
 		exportDocument.setTranslateX((widthOfMenu / 2) - (prefWidth / 2));
 		//exportDocument.setTranslateY((heightOfScreen * 0.5) + 40);
                 exportDocument.setTranslateY((widthOfMenu / 2) - (prefWidth / 2) + (heightOfScreen * 0.4) + 40);
+                exportDocument.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				//home.setStyle("-fx-background-color:#dae7f3;");
+                                exportDocument.setStyle(buttonStyles.getButtonStyle("iPhone2"));
+			}
+		});
+		exportDocument.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+                                
+				exportDocument.setStyle(buttonStyles.getButtonStyle("iPadDark"));
+			}
+		});
 		exportDocument.setOnAction(e -> {
 			// System.out.println("EXPORT DOCUMENT CLICKED");
 			content.getChildren().clear();
