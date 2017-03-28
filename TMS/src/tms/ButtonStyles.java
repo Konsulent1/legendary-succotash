@@ -93,6 +93,17 @@ public class ButtonStyles {
 					"-fx-font-size: 12px;" +
 					"-fx-text-fill: white;");		
 		}
+                if(button.equals("iPhone2")){
+			return ("-fx-background-color:  #a6b5c9, linear-gradient(#303842 0%, #3e5577 20%, #375074 100%), linear-gradient(#768aa5 0%, #849cbb 5%, #5877a2 50%, #486a9a 51%, #4a6c9b 100%);" +
+		            "-fx-background-insets: 0,1,4,5,6;" +
+		            "-fx-background-radius: 9,8,5,4,3;" +
+		            "-fx-padding: 15 30 15 30;" +
+		            "-fx-font-family: "+"Helvetica"+";" +
+		            "-fx-font-size: 12px;" +
+		            "-fx-font-weight: bold;" +
+		            "-fx-text-fill: white;" +
+					"-fx-effect: dropshadow( three-pass-box , rgba(255,255,255,0.2) , 1, 0.0 , 0 , 1);");		
+		}
 		if(button.equals("iPadDark")){
 			return ("-fx-background-color: linear-gradient(#686868 0%, #232723 25%, #373837 75%, #757575 100%), linear-gradient(#020b02, #3a3a3a)," +
 										  "linear-gradient(#9d9e9d 0%, #6b6a6b 20%, #343534 80%, #242424 100%), linear-gradient(#8a8a8a 0%, #6b6a6b 20%, #343534 80%, #262626 100%)," +
