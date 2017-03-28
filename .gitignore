@@ -1,20 +1,7 @@
-<<<<<<< HEAD
 TMS/build/
 TMS/dist/
-TMS/nbproject/jfx-impl.xml
 TMS/nbproject/
-=======
-/TMS/nbproject/
-/TMS/build/
-/TMS/dist/
-<<<<<<< HEAD
->>>>>>> d58737105c55bbe41be91dadfd1ac67f95fbde86
-=======
-/Database_test/nbproject/private/
-/Database_test/build/
->>>>>>> bdd62ad595083162e880c7ce4673f517ac95cf1c
-Database_test/nbproject/project.xml
 Database_test/build.xml
 Database_test/manifest.mf
-Database_test/nbproject/build-impl.xml
+Database_test/build/
 Database_test/nbproject/
