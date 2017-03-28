@@ -173,6 +173,22 @@ public class Main extends Application {
 		// ADDING LISTENERS TO ENTER KEY PRESSED AND LOGIN BUTTON PRESSED
 		nameInput.setOnKeyPressed((event) -> {
 			if (event.getCode() == KeyCode.ENTER) {
+                            
+                             /*
+                            // Check the login information
+                            if(checklogin(nameInput.getText(), passInput.getText()))
+                            {
+                                loggedIn = true;
+				root.getChildren().clear();
+				root = (Pane) responsiveContent2(width, height);
+                            }
+                            else
+                            {
+                                passInput.clear();
+				loginFailed.setVisible(true);
+				stage.setScene(scene);
+                            }
+                            */
 				if (nameInput.getText().equals("") && passInput.getText().equals("")) {
 					loggedIn = true;
 					root.getChildren().clear();
