@@ -39,6 +39,10 @@ public class Main extends Application {
 	TextField passInput;
 
 	public static void main(String[] args) {
+                databaseOperations dbOp = new databaseOperations();
+            
+                System.out.println(dbOp.connect());
+                
 		launch(args);
 	}
 

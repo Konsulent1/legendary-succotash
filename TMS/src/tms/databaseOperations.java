@@ -6,23 +6,32 @@ import java.sql.*;
 
 public class databaseOperations implements Closeable {
     
-    private final String connString = "jdbc:sqlserver://hallvbjo-Konsulent1.uials.no;databaseName=Konsulent1;username=halvbjo;password=KEf8r1Q9gRZZ";
+    
+    private final String connString = "jdbc:sqlserver://158.38.101.103;databaseName=Konsulent1;username=Admin;password=Admin";
+        //String connString = "jdbc:sqlserver://158.38.101.103;databaseName=Konsulent1;user=hallvbjo;password=hallvbjo;";
+    //private final String connString = "jdbc:sqlserver://hallvbjo-Konsulent1.uials.no;databaseName=Konsulent1;username=hallvbjo;password=hallvbjo";
+    //String connString = "jdbc:sqlserver://158.38.101.69;databaseName=SeriousCall;user=admin;password=admin;";
     private Connection connection;
     private PreparedStatement sampleStatement;
     
     public databaseOperations(){
-        
+        //connect();
     }
     
     public boolean connect()
     {
         boolean success;
         try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(connString);
-            createStatements();
+            //createStatements();
             success = true;
         } catch (SQLException SQLEx) {
             success = false;
+            SQLEx.printStackTrace();
+        } catch (ClassNotFoundException CNFE){
+            success = false;
+            CNFE.printStackTrace();
         }
         return success;
     }
@@ -43,7 +52,7 @@ public class databaseOperations implements Closeable {
      */
     private void createStatements() throws SQLException
     {
-        sampleStatement = connection.prepareStatement("SELECT * FROM *");
+        sampleStatement = connection.prepareStatement("SELECT * FROM UserLogin");
         // TODO
     }
     
@@ -63,5 +72,22 @@ public class databaseOperations implements Closeable {
         }
         return results;
     }
+    
+    /*
+        public Connection getConnection(){
+        Connection connection = null;
+        try{
+        String connectionURL = "jdbc:sqlserver://158.38.101.69;" +  
+        		   "databaseName=SeriousCall;user=admin;password=admin;";
+        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+        connection = DriverManager.getConnection(connectionURL);
+        
+        }
+        catch(Exception e){
+        }
+        
+        return connection;
+    }
+*/
 
 }
