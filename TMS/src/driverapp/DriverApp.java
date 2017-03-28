@@ -132,14 +132,7 @@ public class DriverApp extends Application {
                             Connection connection = getConnection();
                             PreparedStatement pst = connection.prepareStatement("INSERT INTO Delay" + "VALUES( 1," + delayReason + ", " + delayTime +  ")");
                             ResultSet rs = pst.executeQuery();
-                            if (rs.next())
-                            {
-
-                                System.out.println(rs.getString(2));
-                                //String test = null;
-                                //test = rs.getString(1);
-
-                            }
+                            
                             connection.close();
 
                         } catch (Exception e)
@@ -265,8 +258,8 @@ public class DriverApp extends Application {
         Connection connection = null;
         try
         {
-            String connectionURL = "jdbc:sqlserver://158.38.101.69;"
-                    + "databaseName=SeriousCall;user=admin;password=admin;";
+            String connectionURL = "jdbc:sqlserver://158.38.101.103;"
+                    + "databaseName=Konsulent1;user=hallvbjo;password=hallvbjo;";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(connectionURL);
 
