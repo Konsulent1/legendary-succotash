@@ -43,17 +43,7 @@ import javafx.util.Pair;
  *
  * @author oebar
  */
-<<<<<<< HEAD
-public class DriverApp extends Application
-{
 
-    @Override
-    public void start(Stage primaryStage)
-    {
-
-        StackPane root = new StackPane();
-
-=======
 public class DriverApp extends Application {
     
     
@@ -70,17 +60,12 @@ public class DriverApp extends Application {
         StackPane login = new StackPane();
         
         Button btnLogin = new Button();
->>>>>>> e2895f98498037dc5206d2aba2d5bfedfad8b0b3
         Button btnRoute = new Button();
         Button btnReport = new Button();
         Button btnSign = new Button();
         Button btnExportDocument = new Button();
         Button btnExit = new Button();
-<<<<<<< HEAD
 
-        root.getChildren().addAll(btnRoute, btnReport, btnSign, btnExportDocument, btnExit);
-
-=======
         
         this.loginObj = new Login();
         while(loginObj.getPassword() == null && loginObj.getUsername() == null){
@@ -89,8 +74,6 @@ public class DriverApp extends Application {
         
         root.getChildren().addAll(btnRoute, btnReport, btnSign, btnExportDocument, btnExit);
         login.getChildren().addAll(btnLogin);
-        
->>>>>>> e2895f98498037dc5206d2aba2d5bfedfad8b0b3
         btnRoute.setTranslateY(-200);
         btnReport.setTranslateY(-150);
         btnSign.setTranslateY(-100);
@@ -101,20 +84,7 @@ public class DriverApp extends Application {
         btnReport.setText("Report Delay");
         btnSign.setText("Sign");
         btnExportDocument.setText("Export Document");
-<<<<<<< HEAD
         btnExit.setText("Exit");
-
-        btnRoute.setOnAction(new EventHandler<ActionEvent>()
-        {
-
-            @Override
-            public void handle(ActionEvent event)
-            {
-                printList();
-=======
-        btnExit.setText("Logout");
-        
-        
         
         
         btnRoute.setOnAction(new EventHandler<ActionEvent>() {
@@ -130,11 +100,6 @@ public class DriverApp extends Application {
                 for(int i = 0; i<listValues.size(); i++){
                     System.out.println(listValues.get(i) + " " + listKeys.get(i).toString() + "km");
                 }
-                
-                
-                
-                
->>>>>>> e2895f98498037dc5206d2aba2d5bfedfad8b0b3
             }
         });
 
@@ -142,38 +107,13 @@ public class DriverApp extends Application {
         {
 
             @Override
-<<<<<<< HEAD
             public void handle(ActionEvent event)
             {
-                /**
-                 * Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                 * alert.setHeaderText("Are you going to be late??");
-                 * alert.setContentText("Are you sure you want to be late?");
-                 * Optional<ButtonType> result = alert.showAndWait(); if
-                 * (result.get() == ButtonType.OK) { System.out.println("You are
-                 * going to be late"); } else {
-                }*
-                 */
-=======
-            public void handle(ActionEvent event) {
-
-                
+               
                 //Logikk her
       
 
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                /**Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
->>>>>>> f311f63ca3bc966fff1be1a185cd27d696fc03a4
-                alert.setHeaderText("Are you going to be late??");
-                alert.setContentText("Are you sure you want to be late?");
-                Optional<ButtonType> result = alert.showAndWait();
-                if (result.get() == ButtonType.OK)
-                {
-                    System.out.println("You are going to be late");
-                } else
-                {
-                }**/
->>>>>>> e2895f98498037dc5206d2aba2d5bfedfad8b0b3
+                Alert alert;
                 AddDelayDialog dDialog = new AddDelayDialog();
                 Optional<Rapport> result = dDialog.showAndWait();
                 if (dDialog.isButtonOK())
@@ -231,16 +171,9 @@ public class DriverApp extends Application {
         {
 
             @Override
-<<<<<<< HEAD
             public void handle(ActionEvent event)
             {
                 generateReport();
-=======
-            public void handle(ActionEvent event) {
-               
-                //Logikk her
-                
->>>>>>> e2895f98498037dc5206d2aba2d5bfedfad8b0b3
             }
         });
 
@@ -248,7 +181,6 @@ public class DriverApp extends Application {
         {
 
             @Override
-<<<<<<< HEAD
             public void handle(ActionEvent event)
             {
                 try
@@ -279,22 +211,7 @@ public class DriverApp extends Application {
             @Override
             public void handle(ActionEvent event)
             {
-=======
-            public void handle(ActionEvent event) {
-                
-                //Logikk her
-                
-            }
-        });
-        
-        /*btnExit.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-              
-                //logikk her
-                
->>>>>>> e2895f98498037dc5206d2aba2d5bfedfad8b0b3
+
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setHeaderText("Exit application?");
                 alert.setContentText("Are you sure you want to exit?");
@@ -304,17 +221,9 @@ public class DriverApp extends Application {
                     Platform.exit();
                 }
             }
-<<<<<<< HEAD
         });
 
-=======
-        });*/
-        
-        
-        
-        
-        
->>>>>>> e2895f98498037dc5206d2aba2d5bfedfad8b0b3
+
         Scene scene = new Scene(root, 300, 600);
 
         primaryStage.setTitle("DriverGUI");
@@ -330,27 +239,9 @@ public class DriverApp extends Application {
     {
         launch(args);
     }
-<<<<<<< HEAD
 
-    public void printList()
-    {
-        Route route = new Route();
-        ArrayList list = new ArrayList<String>();
-        list = route.getRoutes();
-
-        for (int i = 0; i < list.size(); i++)
-        {
-            System.out.println(list.get(i));
-        }
-
-    }
-
-    public void generateReport()
-    {
-=======
     
     public void generateReport()    {
->>>>>>> e2895f98498037dc5206d2aba2d5bfedfad8b0b3
         System.out.println("All goods delivered");
     }
 
@@ -385,13 +276,5 @@ public class DriverApp extends Application {
 
         return connection;
     }
-<<<<<<< HEAD
 
-=======
-    
-    
-    
-    
-    
->>>>>>> e2895f98498037dc5206d2aba2d5bfedfad8b0b3
 }
