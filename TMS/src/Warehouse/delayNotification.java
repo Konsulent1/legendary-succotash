@@ -14,7 +14,7 @@ import oracle.jdbc.dcn.DatabaseChangeRegistration;
 public class delayNotification {
 	  static final String USERNAME= "admin";
 	  static final String PASSWORD= "admin";
-	  static String URL;
+	  static String URL= "jdbc:sqlserver://158.38.101.103;"+ "databaseName=Konsulent1";
 	  
 	  public static void main(String[] argv)
 	  {
