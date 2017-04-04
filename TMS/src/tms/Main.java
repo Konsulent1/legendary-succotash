@@ -39,10 +39,12 @@ public class Main extends Application {
 	TextField passInput;
 
 	public static void main(String[] args) {
-		launch(args);
+		System.out.println("System started");
+                launch(args);
 	}
 
 	public void start(Stage stage) throws Exception {
+            
 		this.stage = stage;
 
 		// SIZE CONSTRAINTS
@@ -58,8 +60,9 @@ public class Main extends Application {
 		scene = new Scene(contentController());
 		stage.setTitle("Konsulent 1 - Transport Management System");
 		stage.setScene(scene);
+                //stage.setFullScreen(true);
 		stage.setMaximized(true);
-		// stage.setResizable(true);
+		stage.setResizable(false);
 		stage.show();
 	}
 
@@ -293,7 +296,7 @@ public class Main extends Application {
                 //home.setTranslateY(heightOfScreen * 0.1);
 		home.setTranslateY((widthOfMenu / 2) - (prefWidth / 2));
 		home.setOnAction(e -> {
-			// System.out.println("HOME CLICKED");
+			System.out.println("HOME CLICKED");
 			content.getChildren().clear();
 			content.getChildren().add(get.getHome());
 		});
@@ -320,8 +323,9 @@ public class Main extends Application {
 			}
 		});
 		schedule.setOnAction(e -> {
-			// System.out.println("SCHEDULE CLICKED");
+			System.out.println("SCHEDULE CLICKED");
 			content.getChildren().clear();
+                        //System.out.println("Schedule Button Pressed");
 			content.getChildren().add(get.getSchedule());
 		});
                 
@@ -356,7 +360,7 @@ public class Main extends Application {
 			}
 		});
 		load.setOnAction(e -> {
-			// System.out.println("LOAD CLICKED");
+			System.out.println("LOAD CLICKED");
 			content.getChildren().clear();
 			content.getChildren().add(get.getLoad());
 		});
