@@ -260,7 +260,7 @@ public class DriverApp extends Application
         try
         {
             String connectionURL = "jdbc:sqlserver://158.38.101.103;"
-                    + "databaseName=Konsulent1;user=hallvbjo;password=hallvbjo;";
+                    + "databaseName=Konsulent1;user=admin123;password=admin123;";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(connectionURL);
 
