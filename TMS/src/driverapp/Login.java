@@ -14,8 +14,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Optional;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
@@ -31,7 +34,7 @@ import javafx.util.Pair;
  */
 public class Login
 {
-
+    private int returnInt = 2;
     private String password = null;
     private String username = null;
 
@@ -45,9 +48,9 @@ public class Login
         return this.password;
     }
 
-    public void loginDialog()
+    public int loginDialog()
     {
-
+        
         // Create the custom dialog.
         Dialog<Pair<String, String>> dialog = new Dialog<>();
         dialog.setTitle("Login");
@@ -76,6 +79,8 @@ public class Login
         // Enable/Disable login button depending on whether a username was entered.
         Node loginButton = dialog.getDialogPane().lookupButton(loginButtonType);
         loginButton.setDisable(true);
+        
+        Node cancelButton = dialog.getDialogPane().lookupButton(ButtonType.CANCEL);
 
         // Do some validation (using the Java 8 lambda syntax).
         username.textProperty().addListener((observable, oldValue, newValue)
@@ -88,62 +93,70 @@ public class Login
 
         // Request focus on the username field by default.
         Platform.runLater(() -> username.requestFocus());
-
+        
+                    
         // Convert the result to a username-password-pair when the login button is clicked.
         dialog.setResultConverter(dialogButton
                 -> 
                 {
+                    
                     if (dialogButton == loginButtonType)
                     {
                         return new Pair<>(username.getText(), password.getText());
+                    }else{
+                        returnInt = 3;
                     }
                     return null;
         });
 
         Optional<Pair<String, String>> result = dialog.showAndWait();
-
+        
         result.ifPresent(usernamePassword
                 -> 
                 {
                     this.username = usernamePassword.getKey();
                     this.password = usernamePassword.getValue();
-                    checkPasswordAndUsername();
+                    
         });
-
+        if( checkPasswordAndUsername())
+        {
+            returnInt = 1;
+        }
+ 
+        return returnInt;
     }
 
     /*
     Used in function logindialog, checks if user exists and if password is correct
     If username or password does not exists, reset username to null
      */
-    private void checkPasswordAndUsername()
+    private boolean checkPasswordAndUsername()
     {
+        
 
         try
         {
             Connection connection = getConnection();
-            PreparedStatement pst = connection.prepareStatement("SELECT * FROM UserLogin");
+            PreparedStatement pst = connection.prepareStatement("SELECT * FROM dbo.UserLogin");
             ResultSet rs = pst.executeQuery();
             int i = 0;
-            while(i <= rs.getFetchSize())
+            while (i <= rs.getFetchSize())
             {
                 rs.next();
                 if (this.password.equals(rs.getString("UserPassword")) && this.username.equals(rs.getString("Username")))
                 {
                     System.out.println("ACCESS GRANTED");
-                    return;
-                } else
-                {
-                    System.out.println("ACCESS DENIED");
-                    
+                    connection.close();
+                    return true;
                 }
                 i++;
             }
-
+            System.out.println("ACCESS DENIED");
             connection.close();
+            return false;
         } catch (Exception e)
         {
-
+            return false;
         }
     }
 
@@ -153,12 +166,14 @@ public class Login
         try
         {
             String connectionURL = "jdbc:sqlserver://158.38.101.103;"
-                    + "databaseName=Konsulent1;user=hallvbjo;password=hallvbjo;";
+                    + "databaseName=Konsulent1;user=admin123;password=admin123";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(connectionURL);
+            if(connection.isValid(0)) System.out.println("Connection estabished");
 
         } catch (Exception e)
         {
+            e.printStackTrace();
         }
 
         return connection;
