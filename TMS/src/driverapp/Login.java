@@ -137,9 +137,8 @@ public class Login
         try
         {
             Connection connection = getConnection();
-            PreparedStatement pst = connection.prepareStatement("SELECT * FROM UserLogin");
+            PreparedStatement pst = connection.prepareStatement("SELECT * FROM dbo.UserLogin");
             ResultSet rs = pst.executeQuery();
-            System.out.println("HAHAHA");
             int i = 0;
             while (i <= rs.getFetchSize())
             {
@@ -167,12 +166,14 @@ public class Login
         try
         {
             String connectionURL = "jdbc:sqlserver://158.38.101.103;"
-                    + "databaseName=Konsulent1;user=admin;password=admin;";
+                    + "databaseName=Konsulent1;user=admin123;password=admin123";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(connectionURL);
+            if(connection.isValid(0)) System.out.println("Connection estabished");
 
         } catch (Exception e)
         {
+            e.printStackTrace();
         }
 
         return connection;
