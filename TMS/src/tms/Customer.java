@@ -15,6 +15,6 @@ public class Customer {
     private String phoneNumber;
     private String email;
     private String address;
-    @JsonIgnore
     private ZipCode zipCode;
+    private boolean active;
 }
