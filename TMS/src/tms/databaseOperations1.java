@@ -159,7 +159,10 @@ public class databaseOperations1 extends Pane {
                 System.out.println(table.getSelectionModel().getSelectedItem().getId());
 
                 //schedulePane.getChildren().clear();
-                getGoods();
+                
+                //getGoods();
+                getGoods(table.getSelectionModel().getSelectedItem().getId());
+                
                 //schedulePane.getChildren().clear();
                 //vBox.getChildren().clear();
 
@@ -173,7 +176,7 @@ public class databaseOperations1 extends Pane {
         return schedulePane;
     }
 
-    public Pane getGoods(/*  Schedule ID as parameter  */) {
+    public Pane getGoods(String scheduleID) {
         schedulePane.getChildren().clear();
 
         //Id column
@@ -198,7 +201,7 @@ public class databaseOperations1 extends Pane {
         scheduleColumn.setCellValueFactory(new PropertyValueFactory<>("schedule"));
 
         goodsTable = new TableView<>();
-        goodsTable.setItems(getGoodsFromDatabase());
+        goodsTable.setItems(getGoodsFromDatabase(scheduleID));
         goodsTable.getColumns().addAll(idColumn, productColumn, weightColumn, destinationColumn, scheduleColumn);
         goodsTable.setPrefHeight(height - 26);
         goodsTable.setTranslateY(0);
@@ -231,28 +234,9 @@ public class databaseOperations1 extends Pane {
 
     public ObservableList<Schedule> getScheduleFromDatabase() {
         ObservableList<Schedule> schedule = FXCollections.observableArrayList();
-        schedule.add(new Schedule("0000001", "Goods", "12:00", "�lesund", "Molde", "5 minutes", "Traffic"));
-        schedule.add(new Schedule("0000002", "Goods", "13:00", "�lesund", "Trondheim", "0 minutes", "-"));
-        schedule.add(new Schedule("0000003", "Goods", "14:00", "�lesund", "Ulsteinvik", "50 minutes", "Snow"));
-        schedule.add(new Schedule("0000004", "Goods", "14:00", "�lesund", "Ulsteinvik", "50 minutes", "Snow"));
-        schedule.add(new Schedule("0000005", "Goods", "14:00", "�lesund", "Ulsteinvik", "50 minutes", "Snow"));
-        schedule.add(new Schedule("0000006", "Goods", "14:00", "�lesund", "Ulsteinvik", "50 minutes", "Snow"));
-        schedule.add(new Schedule("0000007", "Goods", "14:00", "�lesund", "Ulsteinvik", "50 minutes", "Snow"));
-        schedule.add(new Schedule("0000008", "Goods", "14:00", "�lesund", "Ulsteinvik", "50 minutes", "Snow"));
-        schedule.add(new Schedule("0000009", "Goods", "14:00", "�lesund", "Ulsteinvik", "50 minutes", "Snow"));
-        schedule.add(new Schedule("0000010", "Goods", "14:00", "�lesund", "Ulsteinvik", "50 minutes", "Snow"));
-        schedule.add(new Schedule("0000011", "Goods", "14:00", "�lesund", "Ulsteinvik", "50 minutes", "Snow"));
-        schedule.add(new Schedule("0000012", "Goods", "14:00", "�lesund", "Ulsteinvik", "50 minutes", "Snow"));
-        schedule.add(new Schedule("0000013", "Goods", "14:00", "�lesund", "Ulsteinvik", "50 minutes", "Snow"));
-        schedule.add(new Schedule("0000014", "Goods", "14:00", "�lesund", "Ulsteinvik", "50 minutes", "Snow"));
-        schedule.add(new Schedule("0000015", "Goods", "14:00", "�lesund", "Ulsteinvik", "50 minutes", "Snow"));
-        schedule.add(new Schedule("0000016", "Goods", "14:00", "�lesund", "Ulsteinvik", "50 minutes", "Snow"));
-        schedule.add(new Schedule("0000017", "Goods", "14:00", "�lesund", "Ulsteinvik", "50 minutes", "Snow"));
-        schedule.add(new Schedule("0000018", "Goods", "14:00", "�lesund", "Ulsteinvik", "50 minutes", "Snow"));
-        schedule.add(new Schedule("0000019", "Goods", "14:00", "�lesund", "Ulsteinvik", "50 minutes", "Snow"));
-        schedule.add(new Schedule("0000020", "Goods", "14:00", "�lesund", "Ulsteinvik", "50 minutes", "Snow"));
-        schedule.add(new Schedule("0000021", "Goods", "14:00", "�lesund", "Ulsteinvik", "50 minutes", "Snow"));
-        schedule.add(new Schedule("0000022", "Goods", "14:00", "�lesund", "Ulsteinvik", "50 minutes", "Snow"));
+        schedule.add(new Schedule("0000001", "Goods", "10:30", "�lesund", "Trondheim", "5 minutes", "Traffic"));
+        schedule.add(new Schedule("0000002", "Goods", "11:55", "�lesund", "Molde", "", ""));
+        schedule.add(new Schedule("0000003", "Goods", "14:10", "�lesund", "Ålesund", "50 minutes", "Snow"));
 
         /*
 			try{
@@ -268,12 +252,39 @@ public class databaseOperations1 extends Pane {
         return schedule;
     }
 
-    public ObservableList<Goods> getGoodsFromDatabase(/*  Schedule ID as parameter  */) {
+    public ObservableList<Goods> getGoodsFromDatabase(String scheduleID) {
         ObservableList<Goods> goods = FXCollections.observableArrayList();
-        goods.add(new Goods("0001", "0000002", "100 kg", "Trondheim", "Melk"));
-        goods.add(new Goods("0002", "0000002", "57 kg", "Trondheim", "Sm�r"));
-        goods.add(new Goods("0003", "0000002", "87 kg", "Trondheim", "R�mme"));
-        goods.add(new Goods("0004", "0000002", "45 kg", "Trondheim", "Biola"));
+        
+        
+        // (SELECT * FROM dbo.Pallet WHERE scheduleID='"+scheduleID+"'")
+        if(scheduleID.contains("0000001")){
+            goods.add(new Goods("0001", "0000001", "31 kg", "Trondheim", "Taco Shell"));
+            goods.add(new Goods("0002", "0000001", "47 kg", "Trondheim", "Taco Pulver"));
+            goods.add(new Goods("0003", "0000001", "76 kg", "Trondheim", "Taco Saus"));
+            goods.add(new Goods("0004", "0000001", "21 kg", "Trondheim", "Taco wraps"));
+        }
+        // (SELECT * FROM dbo.Pallet WHERE scheduleID='"+scheduleID+"'")
+        if(scheduleID.contains("0000002")){
+            goods.add(new Goods("0005", "0000002", "100 kg", "Molde", "Melk"));
+            goods.add(new Goods("0006", "0000002", "57 kg", "Molde", "Sm�r"));
+            goods.add(new Goods("0007", "0000002", "87 kg", "Molde", "R�mme"));
+            goods.add(new Goods("0008", "0000002", "45 kg", "Molde", "Biola"));
+        }
+        // (SELECT * FROM dbo.Pallet WHERE scheduleID='"+scheduleID+"'")
+        if(scheduleID.contains("0000003")){
+            goods.add(new Goods("0009", "0000003", "250 kg", "Ålesund", "Coca Cola"));
+            goods.add(new Goods("0010", "0000003", "250 kg", "Ålesund", "Fanta"));
+            goods.add(new Goods("0011", "0000003", "250 kg", "Ålesund", "Urge"));
+            goods.add(new Goods("0012", "0000003", "250 kg", "Ålesund", "Solo"));
+            goods.add(new Goods("0013", "0000003", "250 kg", "Ålesund", "Bonaqua"));
+            goods.add(new Goods("0014", "0000003", "250 kg", "Ålesund", "Pepsi"));
+            goods.add(new Goods("0015", "0000003", "250 kg", "Ålesund", "Pepsi Max"));
+            goods.add(new Goods("0016", "0000003", "250 kg", "Ålesund", "Coca Cola Zero"));
+        }
+        //goods.add(new Goods("0001", "0000002", "100 kg", "Trondheim", "Melk"));
+        //goods.add(new Goods("0002", "0000002", "57 kg", "Trondheim", "Sm�r"));
+        //goods.add(new Goods("0003", "0000002", "87 kg", "Trondheim", "R�mme"));
+        //goods.add(new Goods("0004", "0000002", "45 kg", "Trondheim", "Biola"));
 
         /*
 			try{
@@ -287,5 +298,25 @@ public class databaseOperations1 extends Pane {
 			}
          */
         return goods;
+    }
+    
+    public String getScheduleTest(){
+        try
+        {
+            Connection connection = getConnection();
+            PreparedStatement pst = connection.prepareStatement("SELECT * FROM dbo.UserLogin");
+            ResultSet rs = pst.executeQuery();
+            if(rs.next()){
+                
+                System.out.println("From Database: " + rs.getString(2));
+                
+                
+            }
+            return rs.getString(2);
+        } catch (Exception e)
+        {
+            
+        }
+        return null;
     }
 }

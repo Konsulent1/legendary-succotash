@@ -248,6 +248,7 @@ public class Main extends Application {
 
  
         public Parent responsiveContent2(int width, int height) {
+                databaseOperations1 db1 = new databaseOperations1();
 		widthOfScreen = width;
 		heightOfScreen = height;
 		// CREATING THE MAIN PANE (WILL BE DISPLAYED WHEN A USER HAVE LOGGED IN
@@ -353,7 +354,7 @@ public class Main extends Application {
                 */
 
 		// LOAD BUTTON
-		Button load = new Button("Load");
+		Button load = new Button("Loaded");
 		load.setStyle(buttonStyles.getButtonStyle("iPadDark"));
 		load.setPrefSize(prefWidth, prefHeight);
 		load.setTranslateX((widthOfMenu / 2) - (prefWidth / 2));
@@ -404,6 +405,8 @@ public class Main extends Application {
 			// System.out.println("UNLOAD CLICKED");
 			content.getChildren().clear();
 			content.getChildren().add(get.getUnload());
+                        System.out.println(db1.getScheduleTest());
+                        //System.out.println("UNLOAD CLICKED");
 		});
                 
                 /*
