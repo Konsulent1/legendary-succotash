@@ -20,6 +20,7 @@ import javafx.scene.control.TablePosition;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -43,33 +44,39 @@ import javafx.util.Pair;
  *
  * @author oebar
  */
-public class DriverApp extends Application {
-    
-    
+
+public class DriverApp extends Application
+{
     private Login loginObj;
     private Route route;
-    
-            
+
     @Override
-    public void start(Stage primaryStage) {
-        
+    public void start(Stage primaryStage)
+    {
+
         route = new Route();
-        
+
         StackPane root = new StackPane();
         StackPane login = new StackPane();
-        
+
         Button btnLogin = new Button();
         Button btnRoute = new Button();
         Button btnReport = new Button();
         Button btnSign = new Button();
         Button btnExportDocument = new Button();
         Button btnExit = new Button();
-        
+
         this.loginObj = new Login();
-        while(loginObj.getPassword() == null && loginObj.getUsername() == null){
-        loginObj.loginDialog();
+        int loginValue = 2;
+        while (loginValue == 2)
+        {
+            loginValue = loginObj.loginDialog();
+        if (loginValue == 3)
+        {
+            Platform.exit();
         }
-        
+        }
+
         root.getChildren().addAll(btnRoute, btnReport, btnSign, btnExportDocument, btnExit);
         login.getChildren().addAll(btnLogin);
         
@@ -83,20 +90,29 @@ public class DriverApp extends Application {
         btnReport.setText("Report Delay");
         btnSign.setText("Sign");
         btnExportDocument.setText("Export Document");
+
         btnExit.setText("Logout");
         
         
         
         
-        btnRoute.setOnAction(new EventHandler<ActionEvent>() {
+        
             
             
             
+
+        btnExit.setText("Exit");
+
+        btnRoute.setOnAction(new EventHandler<ActionEvent>()
+        {
+
+
             HashMap routeList = route.getRoutes();
-                ArrayList listValues = new ArrayList<String>(routeList.values());
-                ArrayList listKeys = new ArrayList<String>(routeList.keySet());
-            
+            ArrayList listValues = new ArrayList<String>(routeList.values());
+            ArrayList listKeys = new ArrayList<String>(routeList.keySet());
+
             @Override
+
             public void handle(ActionEvent event) {
                 String destinations = "";
                  for(int i = 0; i<listValues.size(); i++){
@@ -111,27 +127,26 @@ public class DriverApp extends Application {
                 
 
                 alert.showAndWait();
-                
-                
-                
-                
-                
-                
-                
             }
-        });
+                
+        });  
+                
+                
+                
+                
+
+           
         
         btnReport.setOnAction(new EventHandler<ActionEvent>() {
             
-            @Override
-            public void handle(ActionEvent event) {
+           
+            
+            public void handle(ActionEvent event)
+            {
 
-                
                 //Logikk her
-      
+                Alert alert;
 
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                
                 AddDelayDialog dDialog = new AddDelayDialog();
                 Optional<Rapport> result = dDialog.showAndWait();
                 if (dDialog.isButtonOK())
@@ -140,6 +155,24 @@ public class DriverApp extends Application {
                     {
                         String delayReason = "" + dDialog.getDelayReason();
                         String delayTime = "" + dDialog.getDelayInMin();
+
+                        /**
+                         * INSERT INTO [dbo].[PortOfOrigin] ([OriginID] ,
+                         * [Port]) VALUES	(1,	'PortOfAdasalesund'); *
+                         */
+
+                        try
+                        {
+                            Connection connection = getConnection();
+                            PreparedStatement pst = connection.prepareStatement("INSERT INTO Delay" + "VALUES( 1," + delayReason + ", " + delayTime + ")");
+                            ResultSet rs = pst.executeQuery();
+
+                            connection.close();
+
+                        } catch (Exception e)
+                        {
+
+                        }
 
                         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");	
                         Connection conn = DriverManager.getConnection("jdbc:sqlserver:hallvbjo-Konsulent1.uials.no;user=hallvbjo;password=hallvbjo;database=Konsulent1");
@@ -190,51 +223,41 @@ public class DriverApp extends Application {
         btnExportDocument.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
-            public void handle(ActionEvent event) {
-                
-                //Logikk her
-                
-            }
-        });
-        
-        /*btnExit.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-              
-                //logikk her
-                
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setHeaderText("Exit application?");
-                alert.setContentText("Are you sure you want to exit?");
-                Optional<ButtonType> result = alert.showAndWait();
-                if (result.get() == ButtonType.OK)
+
+            public void handle(ActionEvent event)
+            {
+                try
                 {
-                    Platform.exit();
+                    Connection connection = getConnection();
+                    PreparedStatement pst = connection.prepareStatement("SELECT * FROM Delay");
+                    ResultSet rs = pst.executeQuery();
+                    if (rs.next())
+                    {
+
+                        System.out.println(rs.getString(2));
+                        //String test = null;
+                        //test = rs.getString(1);
+
+                    }
+                    connection.close();
+
+                } catch (Exception e)
+                {
+
                 }
-            }
-        });*/
+
+        }});
         
-        
-        
-        
-        
-        Scene scene = new Scene(root, 300, 600);
-        
-        primaryStage.setTitle("DriverGUI");
-        primaryStage.setScene(scene);
-        primaryStage.show();
         
     }
-
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String[] args) {
         launch(args);
     }
-    
-    public void generateReport()    {
+        
+
+    public void generateReport()
+    {
         System.out.println("All goods delivered");
     }
     
@@ -245,13 +268,33 @@ public class DriverApp extends Application {
     public void exportDocument()    {
         
     }
+
     
-    public void logout()    {
-        
+
+    public Connection getConnection()
+    {
+        Connection connection = null;
+        try
+        {
+            String connectionURL = "jdbc:sqlserver://158.38.101.103;"
+                    + "databaseName=Konsulent1;user=admin123;password=admin123;";
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            connection = DriverManager.getConnection(connectionURL);
+
+        } catch (Exception e)
+        {
+        }
+
+        return connection;
     }
     
     
     
     
-    
+        
+
+                
+
+
 }
+
