@@ -245,7 +245,8 @@ public class Main extends Application {
                 Pane background = new Pane();
 		Canvas canvasBg = new Canvas(widthOfScreen, heightOfScreen);
 		background.getChildren().addAll(canvasBg);
-		background.setStyle("-fx-background-color: radial-gradient(radius 100%, red, darkgray, black);");
+		//background.setStyle("-fx-background-color: radial-gradient(radius 100%, red, darkgray, black);");
+                background.setStyle("-fx-background-color: lightgrey;");
 
 		// VARIABLES NEEDED IN THE NEXT SECTION
 		int widthOfMenu = (int) (widthOfScreen * 0.20);
@@ -360,7 +361,7 @@ public class Main extends Application {
 			}
 		});
 		load.setOnAction(e -> {
-			System.out.println("LOAD CLICKED");
+			//System.out.println("LOAD CLICKED");
 			content.getChildren().clear();
 			content.getChildren().add(get.getLoad());
 		});
