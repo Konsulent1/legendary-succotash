@@ -122,6 +122,7 @@ public class Main extends Application {
 	}
 
 	public Parent responsiveLogin(int width, int height) {
+                databaseOperations1 db1 = new databaseOperations1();
 
 		widthOfScreen = width;
 		heightOfScreen = height;
@@ -192,7 +193,7 @@ public class Main extends Application {
 				stage.setScene(scene);
                             }
                             */
-				if (nameInput.getText().equals("") && passInput.getText().equals("")) {
+				if(db1.checkPasswordAndUsername(nameInput.getText(), passInput.getText())){
 					loggedIn = true;
 					root.getChildren().clear();
 					root = (Pane) responsiveContent2(width, height);
@@ -205,7 +206,7 @@ public class Main extends Application {
 		});
 		passInput.setOnKeyPressed((event) -> {
 			if (event.getCode() == KeyCode.ENTER) {
-				if (nameInput.getText().equals("") && passInput.getText().equals("")) {
+				if(db1.checkPasswordAndUsername(nameInput.getText(), passInput.getText())){
 					loggedIn = true;
 					root.getChildren().clear();
 					root = (Pane) responsiveContent2(width, height);
@@ -217,6 +218,17 @@ public class Main extends Application {
 			}
 		});
 		login.setOnAction((event) -> {
+                    if(db1.checkPasswordAndUsername(nameInput.getText(), passInput.getText())){
+                        loggedIn = true;
+			root.getChildren().clear();
+			root = (Pane) responsiveContent2(width, height);
+                    }
+                    else {
+			passInput.clear();
+			loginFailed.setVisible(true);
+			stage.setScene(scene);
+                    }                                
+                    /*
 			if (nameInput.getText().equals("") && passInput.getText().equals("")) {
 				loggedIn = true;
 				root.getChildren().clear();
@@ -227,6 +239,7 @@ public class Main extends Application {
 				loginFailed.setVisible(true);
 				stage.setScene(scene);
 			}
+                    */
 		});
 
 		root.getChildren().addAll(background, loginBox);

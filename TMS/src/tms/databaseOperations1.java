@@ -61,7 +61,47 @@ public class databaseOperations1 extends Pane {
         this.height = height;
         
     }
+    
+    public databaseOperations1() {
+    }
+    
+    public Connection getConnection()
+    {
+        Connection connection = null;
+        try
+        {
+            String connectionURL = "jdbc:sqlserver://158.38.101.103;"
+                    + "databaseName=Konsulent1;user=admin123;password=admin123;";
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            connection = DriverManager.getConnection(connectionURL);
 
+        } catch (Exception e)
+        {
+        }
+
+        return connection;
+    }
+    
+    public boolean checkPasswordAndUsername(String username, String password)
+    {
+        try
+        {
+            Connection connection = getConnection();
+            PreparedStatement pst = connection.prepareStatement("SELECT * FROM dbo.UserLogin WHERE Username='"+ username +"'");
+            ResultSet rs = pst.executeQuery();
+            if(rs.next()){
+                return true;
+            }
+            
+        } catch (Exception e)
+        {
+            
+        }
+        
+        return false;
+    }
+
+    /*
     public Connection getConnection() {
         try {
             String connectionURL = "jdbc:mysql://localhost:3306/testbase?autoReconnect=true&useSSL=false";
@@ -74,6 +114,7 @@ public class databaseOperations1 extends Pane {
         }
         return connection;
     }
+    */
 
     public Pane getSchedule() {
         System.out.println("GetSchedule");
