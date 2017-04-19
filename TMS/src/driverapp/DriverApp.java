@@ -70,10 +70,10 @@ public class DriverApp extends Application
         while (loginValue == 2)
         {
             loginValue = loginObj.loginDialog();
-        if (loginValue == 3)
-        {
-            Platform.exit();
-        }
+            if (loginValue == 3)
+            {
+                Platform.exit();
+            }
         }
 
         root.getChildren().addAll(btnRoute, btnReport, btnSign, btnExportDocument, btnExit);
@@ -132,9 +132,16 @@ public class DriverApp extends Application
 
                         try
                         {
+                            Statement stmt = null;
                             Connection connection = getConnection();
-                            PreparedStatement pst = connection.prepareStatement("INSERT INTO Delay" + "VALUES( 1," + delayReason + ", " + delayTime + ")");
-                            ResultSet rs = pst.executeQuery();
+                            //  PreparedStatement pst = connection.prepareStatement("INSERT INTO Delay (Reason, DelayTime) VALUES(" + delayReason + ", " + delayTime + ");");
+                            //  pst.executeQuery();
+
+                            stmt = connection.createStatement();
+
+                            String sql = "INSERT INTO Delay "
+                                    + "VALUES (" + delayReason + ", " + delayTime + ")";
+                            stmt.executeUpdate(sql);
 
                             connection.close();
 
@@ -183,13 +190,13 @@ public class DriverApp extends Application
                     Connection connection = getConnection();
                     PreparedStatement pst = connection.prepareStatement("SELECT * FROM Delay");
                     ResultSet rs = pst.executeQuery();
-                    if (rs.next())
-                    {
 
-                        System.out.println(rs.getString(2));
+                    while (rs.next())
+                    {
+                        System.out.print(rs.getString("Reason") + "  ");
+                        System.out.println(rs.getString("DelayTime"));
                         //String test = null;
                         //test = rs.getString(1);
-
                     }
                     connection.close();
 
@@ -260,12 +267,17 @@ public class DriverApp extends Application
         try
         {
             String connectionURL = "jdbc:sqlserver://158.38.101.103;"
-                    + "databaseName=Konsulent1;user=admin123;password=admin123;";
+                    + "databaseName=Konsulent1;user=admin123;password=admin123";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(connectionURL);
+            if (connection.isValid(0))
+            {
+                System.out.println("Connection estabished");
+            }
 
         } catch (Exception e)
         {
+            e.printStackTrace();
         }
 
         return connection;
