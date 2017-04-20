@@ -1,5 +1,9 @@
 package Warehouse;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -12,74 +16,67 @@ public class UserLogin
 {
     //Username,Password
     private HashMap<String,String> loginData;
-    private boolean correctUsername = false;
-    private boolean correctPassword = false;
+    private String password = null;
+    private String username = null;
     
-    
-    /**
-     * 
-     * @param userInputUsername
-     * @param userInputPassword
-     * @return 
-     */
-    public boolean checkInput(String userInputUsername, String userInputPassword)
+    public UserLogin(String username, String password)
     {
-        boolean correctInput = false;
-        
-        checkUsername(userInputUsername);
-        checkPassword(userInputPassword);
-        
-        if (correctUsername && correctPassword)
-        {
-            correctInput = true;
-        }
-        
-        return correctInput; 
-    }
-            
-    
-    
-    
-    /**
-     * 
-     * @param userInput
-     */
-    public void checkUsername(String userInput)
-    {
-        Iterator it = loginData.entrySet().iterator();
-        while(it.hasNext())
-        {
-            Map.Entry thisEntry = (Map.Entry) it.next();
-            
-            if(thisEntry.getKey().equals(userInput))
-            {
-                this.correctUsername = true; 
-            }
-        }
+        this.password = password;
+        this.username = username;
     }
     
-    
-    /**
-     * 
-     * @param userInput
-     */
-    public void checkPassword(String userInput)
-    {
-        Iterator it = loginData.entrySet().iterator();
-        while(it.hasNext())
-        {
-            Map.Entry thisEntry = (Map.Entry) it.next();
-            
-            if(thisEntry.getKey().equals(userInput))
-            {
-                this.correctPassword = true; 
-            }
-        }
-    }
-    
-    public void addDummyData()
-    {
 
+    
+ public boolean checkPasswordAndUsername()
+    {
+        
+
+        try
+        {
+            Connection connection = getConnection();
+            PreparedStatement pst = connection.prepareStatement("SELECT * FROM dbo.UserLogin");
+            ResultSet rs = pst.executeQuery();
+            int i = 0;
+            while (i <= rs.getFetchSize())
+            {
+                rs.next();
+                if (this.password.equals(rs.getString("UserPassword")) && this.username.equals(rs.getString("Username")))
+                {
+                    System.out.println("ACCESS GRANTED");
+                    connection.close();
+                    return true;
+                }
+                i++;
+            }
+            System.out.println("ACCESS DENIED");
+            connection.close();
+            return false;
+        } catch (Exception e)
+        {
+            return false;
+        }
+    }
+    
+
+
+    
+     public Connection getConnection()
+    {
+        Connection connection = null;
+        try
+        {
+            String connectionURL = "jdbc:sqlserver://158.38.101.103;"
+                    + "databaseName=Konsulent1;user=admin123;password=admin123";
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            connection = DriverManager.getConnection(connectionURL);
+            if(connection.isValid(0)) System.out.println("Connection estabished");
+
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return connection;
     }
     
 }

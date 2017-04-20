@@ -1,5 +1,6 @@
 package tms;
 
+import Warehouse.UserLogin;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
@@ -214,7 +215,8 @@ public class Main extends Application {
 			}
 		});
 		login.setOnAction((event) -> {
-			if (nameInput.getText().equals("") && passInput.getText().equals("")) {
+                    UserLogin userLogin = new UserLogin(nameInput.getText(), passInput.getText());
+			if (userLogin.checkPasswordAndUsername()) {
 				loggedIn = true;
 				root.getChildren().clear();
 				root = (Pane) responsiveContent2(width, height);
