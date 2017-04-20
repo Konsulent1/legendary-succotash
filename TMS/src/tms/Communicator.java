@@ -1,6 +1,7 @@
 package tms;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import no.ntnu.alesund.*;
@@ -9,6 +10,8 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -54,14 +57,16 @@ public class Communicator
     public void testGet()
     {
         Customer customer;
-        String getString = fWString.httpGet(url + customersUrl + "/1", null);
-        System.out.println(getString + "\n");
         try {
-            customer = mapper.readValue(getString, Customer.class);
-            System.out.println(customer.getPhoneNumber());
-            System.out.println(customer.getAddress());
+            ArrayList<Customer> aList;
+            String getString = httpGet(url + customersUrl);
+            aList = mapper.readValue(getString, new TypeReference<List<Customer>>(){});
+            //System.out.println(getString + "\n");
+            System.out.println(aList.get(2).getName());
         } catch (IOException ioe) {
             System.out.println(ioe.getMessage());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
     
@@ -84,6 +89,11 @@ public class Communicator
         } catch (Exception ioe) {
             ioe.getMessage();
         }
+    }
+    
+    public List<Customer> getCustomers()
+    {
+        return null;
     }
 
     private static String httpGet(String urlString) throws Exception {

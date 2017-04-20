@@ -2,7 +2,6 @@ package tms;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  * Created by Robert on 23-Mar-17.
