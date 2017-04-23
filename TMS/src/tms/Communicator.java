@@ -9,11 +9,13 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * This class connects to the ERP SQL database
+ * and can get and post information from/to it.
  *
+ * 
  * @author Norway92
  */
 public class Communicator
@@ -30,6 +32,9 @@ public class Communicator
     private final String departmentsUrl;
     private final String orderlinesUrl;
     
+    /**
+     * 
+     */
     public Communicator ()
     {
         mapper = new ObjectMapper();
@@ -44,9 +49,13 @@ public class Communicator
         orderlinesUrl = "/orderlines";
     }
     
+    /**
+     * 
+     * @return 
+     */
     public List<Customer> customersGet()
     {
-            List<Customer> cList = null;
+        List<Customer> cList = null;
         try {
             String getString = httpGet(url + customersUrl);
             cList = mapper.readValue(getString, new TypeReference<List<Customer>>(){});
@@ -58,10 +67,14 @@ public class Communicator
         return cList;
     }
     
+    /**
+     * 
+     * @param customer 
+     */
     public void customerPost(Customer customer)
     {
         try {
-            System.out.println(mapper.writeValueAsString(customer));
+            //System.out.println(mapper.writeValueAsString(customer));
             String postString = mapper.writeValueAsString(customer);
             httpPost(url + customersUrl, postString);
         } catch (JsonProcessingException jpe) {
@@ -71,9 +84,13 @@ public class Communicator
         }
     }
     
+    /**
+     * 
+     * @return 
+     */
     public List<Employee> employeesGet()
     {
-            List<Employee> eList = null;
+        List<Employee> eList = null;
         try {
             String getString = httpGet(url + employeesUrl);
             eList = mapper.readValue(getString, new TypeReference<List<Employee>>(){});
@@ -85,10 +102,14 @@ public class Communicator
         return eList;
     }
     
+    /**
+     * 
+     * @param employee 
+     */
     public void employeePost(Employee employee)
     {
         try {
-            System.out.println(mapper.writeValueAsString(employee));
+            //System.out.println(mapper.writeValueAsString(employee));
             String postString = mapper.writeValueAsString(employee);
             httpPost(url + employeesUrl, postString);
         } catch (JsonProcessingException jpe) {
@@ -98,9 +119,13 @@ public class Communicator
         }
     }
     
+    /**
+     * 
+     * @return 
+     */
     public List<Product> productsGet()
     {
-            List<Product> pList = null;
+        List<Product> pList = null;
         try {
             String getString = httpGet(url + productsUrl);
             pList = mapper.readValue(getString, new TypeReference<List<Product>>(){});
@@ -112,10 +137,14 @@ public class Communicator
         return pList;
     }
     
+    /**
+     * 
+     * @param product 
+     */
     public void productPost(Product product)
     {
         try {
-            System.out.println(mapper.writeValueAsString(product));
+            //System.out.println(mapper.writeValueAsString(product));
             String postString = mapper.writeValueAsString(product);
             httpPost(url + productsUrl, postString);
         } catch (JsonProcessingException jpe) {
@@ -125,9 +154,13 @@ public class Communicator
         }
     }
     
+    /**
+     * 
+     * @return 
+     */
     public List<Order> ordersGet()
     {
-            List<Order> oList = null;
+        List<Order> oList = null;
         try {
             String getString = httpGet(url + ordersUrl);
             oList = mapper.readValue(getString, new TypeReference<List<Order>>(){});
@@ -139,10 +172,14 @@ public class Communicator
         return oList;
     }
     
+    /**
+     * 
+     * @param order 
+     */
     public void orderPost(Order order)
     {
         try {
-            System.out.println(mapper.writeValueAsString(order));
+            //System.out.println(mapper.writeValueAsString(order));
             String postString = mapper.writeValueAsString(order);
             httpPost(url + ordersUrl, postString);
         } catch (JsonProcessingException jpe) {
@@ -152,9 +189,13 @@ public class Communicator
         }
     }
     
+    /**
+     * 
+     * @return 
+     */
     public List<ZipCode> zipCodesGet()
     {
-            List<ZipCode> zCList = null;
+        List<ZipCode> zCList = null;
         try {
             String getString = httpGet(url + zipcodesUrl);
             zCList = mapper.readValue(getString, new TypeReference<List<ZipCode>>(){});
@@ -166,10 +207,14 @@ public class Communicator
         return zCList;
     }
     
+    /**
+     * 
+     * @param zipCode 
+     */
     public void zipCodePost(ZipCode zipCode)
     {
         try {
-            System.out.println(mapper.writeValueAsString(zipCode));
+            //System.out.println(mapper.writeValueAsString(zipCode));
             String postString = mapper.writeValueAsString(zipCode);
             httpPost(url + zipcodesUrl, postString);
         } catch (JsonProcessingException jpe) {
@@ -179,9 +224,13 @@ public class Communicator
         }
     }
     
+    /**
+     * 
+     * @return 
+     */
     public List<Department> departmentsGet()
     {
-            List<Department> dList = null;
+        List<Department> dList = null;
         try {
             String getString = httpGet(url + departmentsUrl);
             dList = mapper.readValue(getString, new TypeReference<List<Department>>(){});
@@ -193,10 +242,14 @@ public class Communicator
         return dList;
     }
     
+    /**
+     * 
+     * @param department 
+     */
     public void departmentPost(Department department)
     {
         try {
-            System.out.println(mapper.writeValueAsString(department));
+            //System.out.println(mapper.writeValueAsString(department));
             String postString = mapper.writeValueAsString(department);
             httpPost(url + departmentsUrl, postString);
         } catch (JsonProcessingException jpe) {
@@ -206,9 +259,13 @@ public class Communicator
         }
     }
     
+    /**
+     * 
+     * @return 
+     */
     public List<Orderline> orderlinesGet()
     {
-            List<Orderline> oList = null;
+        List<Orderline> oList = null;
         try {
             String getString = httpGet(url + orderlinesUrl);
             oList = mapper.readValue(getString, new TypeReference<List<Orderline>>(){});
@@ -220,10 +277,14 @@ public class Communicator
         return oList;
     }
     
+    /**
+     * 
+     * @param orderline 
+     */
     public void orderlinePost(Orderline orderline)
     {
         try {
-            System.out.println(mapper.writeValueAsString(orderline));
+            //System.out.println(mapper.writeValueAsString(orderline));
             String postString = mapper.writeValueAsString(orderline);
             httpPost(url + orderlinesUrl, postString);
         } catch (JsonProcessingException jpe) {
@@ -233,6 +294,12 @@ public class Communicator
         }
     }
 
+    /**
+     * 
+     * @param urlString
+     * @return
+     * @throws Exception 
+     */
     private static String httpGet(String urlString) throws Exception {
         URL url = new URL(urlString);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -254,7 +321,12 @@ public class Communicator
         return response.toString();
     }
 
-
+    /**
+     * 
+     * @param urlString
+     * @param body
+     * @throws Exception 
+     */
     private static void httpPost(String urlString, String body) throws Exception {
         URL url = new URL(urlString);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
