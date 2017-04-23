@@ -43,22 +43,21 @@ import javafx.util.Pair;
  *
  * @author oebar
  */
+public class DriverApp extends Application
+{
 
-public class DriverApp extends Application {
-    
-    
     private Login loginObj;
     private Route route;
-    
-            
+
     @Override
-    public void start(Stage primaryStage) {
-        
+    public void start(Stage primaryStage)
+    {
+
         route = new Route();
-        
+
         StackPane root = new StackPane();
         StackPane login = new StackPane();
-        
+
         Button btnLogin = new Button();
         Button btnRoute = new Button();
         Button btnReport = new Button();
@@ -66,12 +65,17 @@ public class DriverApp extends Application {
         Button btnExportDocument = new Button();
         Button btnExit = new Button();
 
-        
         this.loginObj = new Login();
-        while(loginObj.getPassword() == null && loginObj.getUsername() == null){
-        loginObj.loginDialog();
+        int loginValue = 2;
+        while (loginValue == 2)
+        {
+            loginValue = loginObj.loginDialog();
+            if (loginValue == 3)
+            {
+                Platform.exit();
+            }
         }
-        
+
         root.getChildren().addAll(btnRoute, btnReport, btnSign, btnExportDocument, btnExit);
         login.getChildren().addAll(btnLogin);
         btnRoute.setTranslateY(-200);
@@ -85,19 +89,20 @@ public class DriverApp extends Application {
         btnSign.setText("Sign");
         btnExportDocument.setText("Export Document");
         btnExit.setText("Exit");
-        
-        
-        btnRoute.setOnAction(new EventHandler<ActionEvent>() {
-            
+
+        btnRoute.setOnAction(new EventHandler<ActionEvent>()
+        {
+
             HashMap routeList = route.getRoutes();
-                ArrayList listValues = new ArrayList<String>(routeList.values());
-                ArrayList listKeys = new ArrayList<String>(routeList.keySet());
-            
+            ArrayList listValues = new ArrayList<String>(routeList.values());
+            ArrayList listKeys = new ArrayList<String>(routeList.keySet());
+
             @Override
-            public void handle(ActionEvent event) {
-                
-                
-                for(int i = 0; i<listValues.size(); i++){
+            public void handle(ActionEvent event)
+            {
+
+                for (int i = 0; i < listValues.size(); i++)
+                {
                     System.out.println(listValues.get(i) + " " + listKeys.get(i).toString() + "km");
                 }
             }
@@ -109,10 +114,8 @@ public class DriverApp extends Application {
             @Override
             public void handle(ActionEvent event)
             {
-               
-                //Logikk her
-      
 
+                //Logikk her
                 Alert alert;
                 AddDelayDialog dDialog = new AddDelayDialog();
                 Optional<Rapport> result = dDialog.showAndWait();
@@ -129,17 +132,23 @@ public class DriverApp extends Application {
 
                         try
                         {
+                            Statement stmt = null;
                             Connection connection = getConnection();
-                            PreparedStatement pst = connection.prepareStatement("INSERT INTO Delay" + "VALUES( 1," + delayReason + ", " + delayTime +  ")");
-                            ResultSet rs = pst.executeQuery();
-                            
+                            //  PreparedStatement pst = connection.prepareStatement("INSERT INTO Delay (Reason, DelayTime) VALUES(" + delayReason + ", " + delayTime + ");");
+                            //  pst.executeQuery();
+
+                            stmt = connection.createStatement();
+
+                            String sql = "INSERT INTO Delay "
+                                    + "VALUES (" + delayReason + ", " + delayTime + ")";
+                            stmt.executeUpdate(sql);
+
                             connection.close();
 
                         } catch (Exception e)
                         {
-                            
+
                         }
-                        
 
                     } catch (InputMismatchException e)
                     {
@@ -177,24 +186,24 @@ public class DriverApp extends Application {
             public void handle(ActionEvent event)
             {
                 try
-                        {
-                            Connection connection = getConnection();
-                            PreparedStatement pst = connection.prepareStatement("SELECT * FROM Delay");
-                            ResultSet rs = pst.executeQuery();
-                            if (rs.next())
-                            {
+                {
+                    Connection connection = getConnection();
+                    PreparedStatement pst = connection.prepareStatement("SELECT * FROM Delay");
+                    ResultSet rs = pst.executeQuery();
 
-                                System.out.println(rs.getString(2));
-                                //String test = null;
-                                //test = rs.getString(1);
+                    while (rs.next())
+                    {
+                        System.out.print(rs.getString("Reason") + "  ");
+                        System.out.println(rs.getString("DelayTime"));
+                        //String test = null;
+                        //test = rs.getString(1);
+                    }
+                    connection.close();
 
-                            }
-                            connection.close();
+                } catch (Exception e)
+                {
 
-                        } catch (Exception e)
-                        {
-                            
-                        }
+                }
             }
         });
 
@@ -216,7 +225,6 @@ public class DriverApp extends Application {
             }
         });
 
-
         Scene scene = new Scene(root, 300, 600);
 
         primaryStage.setTitle("DriverGUI");
@@ -233,8 +241,8 @@ public class DriverApp extends Application {
         launch(args);
     }
 
-    
-    public void generateReport()    {
+    public void generateReport()
+    {
         System.out.println("All goods delivered");
     }
 
@@ -259,12 +267,17 @@ public class DriverApp extends Application {
         try
         {
             String connectionURL = "jdbc:sqlserver://158.38.101.103;"
-                    + "databaseName=Konsulent1;user=hallvbjo;password=hallvbjo;";
+                    + "databaseName=Konsulent1;user=admin123;password=admin123";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(connectionURL);
+            if (connection.isValid(0))
+            {
+                System.out.println("Connection estabished");
+            }
 
         } catch (Exception e)
         {
+            e.printStackTrace();
         }
 
         return connection;
