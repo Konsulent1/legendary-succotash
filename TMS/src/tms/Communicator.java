@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
-import no.ntnu.alesund.*;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
@@ -19,8 +18,6 @@ import java.util.List;
  */
 public class Communicator
   {
-    private final FetchWebString fWString;
-    private final JsonMarshalling jsonMarshall;
     private static ObjectMapper mapper;
     
     // URL-fragments
@@ -35,8 +32,6 @@ public class Communicator
     
     public Communicator ()
     {
-        fWString = new FetchWebString();
-        jsonMarshall = new JsonMarshalling();
         mapper = new ObjectMapper();
         
         url = "http://kaysl-logix.uials.no:8080";
@@ -49,37 +44,22 @@ public class Communicator
         orderlinesUrl = "/orderlines";
     }
     
-    public static void main(String[] args)
+    public List<Customer> customersGet()
     {
-        new Communicator().testGet();
-    }
-    
-    public void testGet()
-    {
-        Customer customer;
+            List<Customer> cList = null;
         try {
-            ArrayList<Customer> aList;
             String getString = httpGet(url + customersUrl);
-            aList = mapper.readValue(getString, new TypeReference<List<Customer>>(){});
-            //System.out.println(getString + "\n");
-            System.out.println(aList.get(2).getName());
+            cList = mapper.readValue(getString, new TypeReference<List<Customer>>(){});
         } catch (IOException ioe) {
             System.out.println(ioe.getMessage());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        return cList;
     }
     
-    public void testPost()
+    public void customerPost(Customer customer)
     {
-        Customer customer = new Customer();
-        customer.setName("asdftest");
-        customer.setAddress("testgata 11");
-        customer.setPhoneNumber("24688462");
-        customer.setEmail("e@ma.il");
-        ZipCode zipCode = new ZipCode();
-        zipCode.setZipCode("6412");
-        customer.setZipCode(zipCode);
         try {
             System.out.println(mapper.writeValueAsString(customer));
             String postString = mapper.writeValueAsString(customer);
@@ -91,9 +71,166 @@ public class Communicator
         }
     }
     
-    public List<Customer> getCustomers()
+    public List<Employee> employeesGet()
     {
-        return null;
+            List<Employee> eList = null;
+        try {
+            String getString = httpGet(url + employeesUrl);
+            eList = mapper.readValue(getString, new TypeReference<List<Employee>>(){});
+        } catch (IOException ioe) {
+            System.out.println(ioe.getMessage());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return eList;
+    }
+    
+    public void employeePost(Employee employee)
+    {
+        try {
+            System.out.println(mapper.writeValueAsString(employee));
+            String postString = mapper.writeValueAsString(employee);
+            httpPost(url + employeesUrl, postString);
+        } catch (JsonProcessingException jpe) {
+            System.out.println(jpe.getMessage());
+        } catch (Exception ioe) {
+            ioe.getMessage();
+        }
+    }
+    
+    public List<Product> productsGet()
+    {
+            List<Product> pList = null;
+        try {
+            String getString = httpGet(url + productsUrl);
+            pList = mapper.readValue(getString, new TypeReference<List<Product>>(){});
+        } catch (IOException ioe) {
+            System.out.println(ioe.getMessage());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return pList;
+    }
+    
+    public void productPost(Product product)
+    {
+        try {
+            System.out.println(mapper.writeValueAsString(product));
+            String postString = mapper.writeValueAsString(product);
+            httpPost(url + productsUrl, postString);
+        } catch (JsonProcessingException jpe) {
+            System.out.println(jpe.getMessage());
+        } catch (Exception ioe) {
+            ioe.getMessage();
+        }
+    }
+    
+    public List<Order> ordersGet()
+    {
+            List<Order> oList = null;
+        try {
+            String getString = httpGet(url + ordersUrl);
+            oList = mapper.readValue(getString, new TypeReference<List<Order>>(){});
+        } catch (IOException ioe) {
+            System.out.println(ioe.getMessage());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return oList;
+    }
+    
+    public void orderPost(Order order)
+    {
+        try {
+            System.out.println(mapper.writeValueAsString(order));
+            String postString = mapper.writeValueAsString(order);
+            httpPost(url + ordersUrl, postString);
+        } catch (JsonProcessingException jpe) {
+            System.out.println(jpe.getMessage());
+        } catch (Exception ioe) {
+            ioe.getMessage();
+        }
+    }
+    
+    public List<ZipCode> zipCodesGet()
+    {
+            List<ZipCode> zCList = null;
+        try {
+            String getString = httpGet(url + zipcodesUrl);
+            zCList = mapper.readValue(getString, new TypeReference<List<ZipCode>>(){});
+        } catch (IOException ioe) {
+            System.out.println(ioe.getMessage());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return zCList;
+    }
+    
+    public void zipCodePost(ZipCode zipCode)
+    {
+        try {
+            System.out.println(mapper.writeValueAsString(zipCode));
+            String postString = mapper.writeValueAsString(zipCode);
+            httpPost(url + zipcodesUrl, postString);
+        } catch (JsonProcessingException jpe) {
+            System.out.println(jpe.getMessage());
+        } catch (Exception ioe) {
+            ioe.getMessage();
+        }
+    }
+    
+    public List<Department> departmentsGet()
+    {
+            List<Department> dList = null;
+        try {
+            String getString = httpGet(url + departmentsUrl);
+            dList = mapper.readValue(getString, new TypeReference<List<Department>>(){});
+        } catch (IOException ioe) {
+            System.out.println(ioe.getMessage());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return dList;
+    }
+    
+    public void departmentPost(Department department)
+    {
+        try {
+            System.out.println(mapper.writeValueAsString(department));
+            String postString = mapper.writeValueAsString(department);
+            httpPost(url + departmentsUrl, postString);
+        } catch (JsonProcessingException jpe) {
+            System.out.println(jpe.getMessage());
+        } catch (Exception ioe) {
+            ioe.getMessage();
+        }
+    }
+    
+    public List<Orderline> orderlinesGet()
+    {
+            List<Orderline> oList = null;
+        try {
+            String getString = httpGet(url + orderlinesUrl);
+            oList = mapper.readValue(getString, new TypeReference<List<Orderline>>(){});
+        } catch (IOException ioe) {
+            System.out.println(ioe.getMessage());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return oList;
+    }
+    
+    public void orderlinePost(Orderline orderline)
+    {
+        try {
+            System.out.println(mapper.writeValueAsString(orderline));
+            String postString = mapper.writeValueAsString(orderline);
+            httpPost(url + orderlinesUrl, postString);
+        } catch (JsonProcessingException jpe) {
+            System.out.println(jpe.getMessage());
+        } catch (Exception ioe) {
+            ioe.getMessage();
+        }
     }
 
     private static String httpGet(String urlString) throws Exception {
