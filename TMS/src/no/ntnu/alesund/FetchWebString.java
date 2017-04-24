@@ -122,7 +122,7 @@ public class FetchWebString {
                 conn.setRequestMethod("GET");
             }
 
-            debugOut("Staring connection...");
+            debugOut("Starting connection...");
             conn.connect();
             debugOut("Connected");
 
