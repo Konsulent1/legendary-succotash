@@ -8,7 +8,8 @@ import lombok.NoArgsConstructor;
  */
 @Data
 @NoArgsConstructor
-public class ZipCode {
+public class ZipCode
+{
     private String zipCode;
     private String location;
 }
