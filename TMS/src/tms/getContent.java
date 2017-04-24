@@ -7,10 +7,13 @@ public class getContent {
 	
 	private int contentWidth;
 	private int contentHeight;
+        databaseOperations db;
+        databaseOperations1 db1;
 	
 	public getContent(int width, int height){
 		this.contentWidth = width;
 		this.contentHeight = height;
+                db1 = new databaseOperations1(contentWidth, contentHeight);
 	}
 
 	public Pane getHome(){
@@ -22,9 +25,15 @@ public class getContent {
 	}
 	
 	public Pane getSchedule(){
-		ContentBox schedule = new ContentBox(contentWidth, contentHeight);
-		schedule.setFill(Color.DARKSLATEGRAY);
-		return schedule;		
+		//ContentBox schedule = new ContentBox(contentWidth, contentHeight);
+		//schedule.setFill(Color.DARKSLATEGRAY);
+		//return schedule;
+                ContentBox schedule = new ContentBox(contentWidth, contentHeight);
+		//schedule.setFill(Color.DARKSLATEGRAY);
+		
+		schedule.getChildren().addAll(db1.getSchedule());
+		
+		return schedule;
 	}
 	
 	public Pane getLoad(){
