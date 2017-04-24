@@ -117,7 +117,7 @@ public class databaseOperations1 extends Pane {
     */
 
     public Pane getSchedule() {
-        System.out.println("GetSchedule");
+        //System.out.println("GetSchedule");
         schedulePane.getChildren().clear();
 
         //Id column
@@ -156,7 +156,7 @@ public class databaseOperations1 extends Pane {
         table.setPrefHeight(height);
         table.setOnMousePressed(e -> {
             if (e.isPrimaryButtonDown() && e.getClickCount() == 2) {
-                System.out.println(table.getSelectionModel().getSelectedItem().getId());
+                //System.out.println(table.getSelectionModel().getSelectedItem().getId()); -----------------------------------------------------------------
 
                 //schedulePane.getChildren().clear();
                 
@@ -308,7 +308,7 @@ public class databaseOperations1 extends Pane {
             ResultSet rs = pst.executeQuery();
             if(rs.next()){
                 
-                System.out.println("From Database: " + rs.getString(2));
+                //System.out.println("From Database: " + rs.getString(2));
                 
                 
             }

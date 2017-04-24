@@ -311,7 +311,7 @@ public class Main extends Application {
                 //home.setTranslateY(heightOfScreen * 0.1);
 		home.setTranslateY((widthOfMenu / 2) - (prefWidth / 2));
 		home.setOnAction(e -> {
-			System.out.println("HOME CLICKED");
+			//System.out.println("HOME CLICKED");
 			content.getChildren().clear();
 			content.getChildren().add(get.getHome());
 		});
@@ -338,7 +338,7 @@ public class Main extends Application {
 			}
 		});
 		schedule.setOnAction(e -> {
-			System.out.println("SCHEDULE CLICKED");
+			//System.out.println("SCHEDULE CLICKED + 1");
 			content.getChildren().clear();
                         //System.out.println("Schedule Button Pressed");
 			content.getChildren().add(get.getSchedule());
@@ -405,7 +405,7 @@ public class Main extends Application {
 			// System.out.println("UNLOAD CLICKED");
 			content.getChildren().clear();
 			content.getChildren().add(get.getUnload());
-                        System.out.println(db1.getScheduleTest());
+                        //System.out.println(db1.getScheduleTest());
                         //System.out.println("UNLOAD CLICKED");
 		});
                 
