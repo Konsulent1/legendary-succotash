@@ -40,10 +40,12 @@ public class Main extends Application {
 	TextField passInput;
 
 	public static void main(String[] args) {
-		launch(args);
+		System.out.println("System started");
+                launch(args);
 	}
 
 	public void start(Stage stage) throws Exception {
+            
 		this.stage = stage;
 
 		// SIZE CONSTRAINTS
@@ -59,8 +61,9 @@ public class Main extends Application {
 		scene = new Scene(contentController());
 		stage.setTitle("Konsulent 1 - Transport Management System");
 		stage.setScene(scene);
+                //stage.setFullScreen(true);
 		stage.setMaximized(true);
-		// stage.setResizable(true);
+		stage.setResizable(false);
 		stage.show();
 	}
 
@@ -120,6 +123,7 @@ public class Main extends Application {
 	}
 
 	public Parent responsiveLogin(int width, int height) {
+                databaseOperations1 db1 = new databaseOperations1();
 
 		widthOfScreen = width;
 		heightOfScreen = height;
@@ -190,7 +194,7 @@ public class Main extends Application {
 				stage.setScene(scene);
                             }
                             */
-				if (nameInput.getText().equals("") && passInput.getText().equals("")) {
+				if(db1.checkPasswordAndUsername(nameInput.getText(), passInput.getText())){
 					loggedIn = true;
 					root.getChildren().clear();
 					root = (Pane) responsiveContent2(width, height);
@@ -203,7 +207,7 @@ public class Main extends Application {
 		});
 		passInput.setOnKeyPressed((event) -> {
 			if (event.getCode() == KeyCode.ENTER) {
-				if (nameInput.getText().equals("") && passInput.getText().equals("")) {
+				if(db1.checkPasswordAndUsername(nameInput.getText(), passInput.getText())){
 					loggedIn = true;
 					root.getChildren().clear();
 					root = (Pane) responsiveContent2(width, height);
@@ -215,8 +219,18 @@ public class Main extends Application {
 			}
 		});
 		login.setOnAction((event) -> {
-                    UserLogin userLogin = new UserLogin(nameInput.getText(), passInput.getText());
-			if (userLogin.checkPasswordAndUsername()) {
+                    if(db1.checkPasswordAndUsername(nameInput.getText(), passInput.getText())){
+                        loggedIn = true;
+			root.getChildren().clear();
+			root = (Pane) responsiveContent2(width, height);
+                    }
+                    else {
+			passInput.clear();
+			loginFailed.setVisible(true);
+			stage.setScene(scene);
+                    }                                
+                    /*
+			if (nameInput.getText().equals("") && passInput.getText().equals("")) {
 				loggedIn = true;
 				root.getChildren().clear();
 				root = (Pane) responsiveContent2(width, height);
@@ -226,6 +240,7 @@ public class Main extends Application {
 				loginFailed.setVisible(true);
 				stage.setScene(scene);
 			}
+                    */
 		});
 
 		root.getChildren().addAll(background, loginBox);
@@ -234,6 +249,7 @@ public class Main extends Application {
 
  
         public Parent responsiveContent2(int width, int height) {
+                databaseOperations1 db1 = new databaseOperations1();
 		widthOfScreen = width;
 		heightOfScreen = height;
 		// CREATING THE MAIN PANE (WILL BE DISPLAYED WHEN A USER HAVE LOGGED IN
@@ -244,7 +260,8 @@ public class Main extends Application {
                 Pane background = new Pane();
 		Canvas canvasBg = new Canvas(widthOfScreen, heightOfScreen);
 		background.getChildren().addAll(canvasBg);
-		background.setStyle("-fx-background-color: radial-gradient(radius 100%, red, darkgray, black);");
+		//background.setStyle("-fx-background-color: radial-gradient(radius 100%, red, darkgray, black);");
+                background.setStyle("-fx-background-color: lightgrey;");
 
 		// VARIABLES NEEDED IN THE NEXT SECTION
 		int widthOfMenu = (int) (widthOfScreen * 0.20);
@@ -295,7 +312,7 @@ public class Main extends Application {
                 //home.setTranslateY(heightOfScreen * 0.1);
 		home.setTranslateY((widthOfMenu / 2) - (prefWidth / 2));
 		home.setOnAction(e -> {
-			// System.out.println("HOME CLICKED");
+			//System.out.println("HOME CLICKED");
 			content.getChildren().clear();
 			content.getChildren().add(get.getHome());
 		});
@@ -322,8 +339,9 @@ public class Main extends Application {
 			}
 		});
 		schedule.setOnAction(e -> {
-			// System.out.println("SCHEDULE CLICKED");
+			//System.out.println("SCHEDULE CLICKED + 1");
 			content.getChildren().clear();
+                        //System.out.println("Schedule Button Pressed");
 			content.getChildren().add(get.getSchedule());
 		});
                 
@@ -337,7 +355,7 @@ public class Main extends Application {
                 */
 
 		// LOAD BUTTON
-		Button load = new Button("Load");
+		Button load = new Button("Loaded");
 		load.setStyle(buttonStyles.getButtonStyle("iPadDark"));
 		load.setPrefSize(prefWidth, prefHeight);
 		load.setTranslateX((widthOfMenu / 2) - (prefWidth / 2));
@@ -358,7 +376,7 @@ public class Main extends Application {
 			}
 		});
 		load.setOnAction(e -> {
-			// System.out.println("LOAD CLICKED");
+			//System.out.println("LOAD CLICKED");
 			content.getChildren().clear();
 			content.getChildren().add(get.getLoad());
 		});
@@ -388,6 +406,8 @@ public class Main extends Application {
 			// System.out.println("UNLOAD CLICKED");
 			content.getChildren().clear();
 			content.getChildren().add(get.getUnload());
+                        //System.out.println(db1.getScheduleTest());
+                        //System.out.println("UNLOAD CLICKED");
 		});
                 
                 /*
