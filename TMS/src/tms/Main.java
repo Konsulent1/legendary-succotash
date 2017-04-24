@@ -219,10 +219,6 @@ public class Main extends Application {
 			}
 		});
 		login.setOnAction((event) -> {
-<<<<<<< HEAD
-                    UserLogin userLogin = new UserLogin(nameInput.getText(), passInput.getText());
-			if (userLogin.checkPasswordAndUsername()) {
-=======
                     if(db1.checkPasswordAndUsername(nameInput.getText(), passInput.getText())){
                         loggedIn = true;
 			root.getChildren().clear();
@@ -235,7 +231,6 @@ public class Main extends Application {
                     }                                
                     /*
 			if (nameInput.getText().equals("") && passInput.getText().equals("")) {
->>>>>>> 9f105826c8a5cfc2b9aadb46bd32f6358e4b6ba9
 				loggedIn = true;
 				root.getChildren().clear();
 				root = (Pane) responsiveContent2(width, height);
