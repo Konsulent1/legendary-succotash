@@ -219,10 +219,10 @@ public class Main extends Application {
 			}
 		});
 		login.setOnAction((event) -> {
-<<<<<<< HEAD
-                    UserLogin userLogin = new UserLogin(nameInput.getText(), passInput.getText());
-			if (userLogin.checkPasswordAndUsername()) {
-=======
+
+  //                  UserLogin userLogin = new UserLogin(nameInput.getText(), passInput.getText());
+//			if (userLogin.checkPasswordAndUsername()) {
+
                     if(db1.checkPasswordAndUsername(nameInput.getText(), passInput.getText())){
                         loggedIn = true;
 			root.getChildren().clear();

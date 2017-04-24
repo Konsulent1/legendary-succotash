@@ -39,7 +39,8 @@ Eksportdocument kan/m� kanskje flyttes????
  
  
  */
-public class databaseOperations1 extends Pane {
+public class databaseOperations1 extends Pane
+{
 
     Connection connection = null;
     PreparedStatement pst = null;
@@ -55,16 +56,18 @@ public class databaseOperations1 extends Pane {
 
     int width;
     int height;
-    
-    public databaseOperations1(int width, int height) {
+
+    public databaseOperations1(int width, int height)
+    {
         this.width = width;
         this.height = height;
-        
+
     }
-    
-    public databaseOperations1() {
+
+    public databaseOperations1()
+    {
     }
-    
+
     public Connection getConnection()
     {
         Connection connection = null;
@@ -81,23 +84,24 @@ public class databaseOperations1 extends Pane {
 
         return connection;
     }
-    
+
     public boolean checkPasswordAndUsername(String username, String password)
     {
         try
         {
             Connection connection = getConnection();
-            PreparedStatement pst = connection.prepareStatement("SELECT * FROM dbo.UserLogin WHERE Username='"+ username +"'");
+            PreparedStatement pst = connection.prepareStatement("SELECT * FROM dbo.UserLogin WHERE Username='" + username + "'");
             ResultSet rs = pst.executeQuery();
-            if(rs.next()){
+            if (rs.next())
+            {
                 return true;
             }
-            
+
         } catch (Exception e)
         {
-            
+
         }
-        
+
         return false;
     }
 
@@ -114,39 +118,39 @@ public class databaseOperations1 extends Pane {
         }
         return connection;
     }
-    */
-
-    public Pane getSchedule() {
+     */
+    public Pane getSchedule()
+    {
         //System.out.println("GetSchedule");
         schedulePane.getChildren().clear();
 
         //Id column
         TableColumn<Schedule, String> idColumn = new TableColumn<>("Id");
-        idColumn.setMinWidth(width/7);
+        idColumn.setMinWidth(width / 7);
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         //Type column
         TableColumn<Schedule, String> typeColumn = new TableColumn<>("Type");
-        typeColumn.setMinWidth(width/7);
+        typeColumn.setMinWidth(width / 7);
         typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
         //StartTime column
         TableColumn<Schedule, String> startTimeColumn = new TableColumn<>("StartTime");
-        startTimeColumn.setMinWidth(width/7);
+        startTimeColumn.setMinWidth(width / 7);
         startTimeColumn.setCellValueFactory(new PropertyValueFactory<>("startTime"));
         //Origin column
         TableColumn<Schedule, String> originColumn = new TableColumn<>("Origin");
-        originColumn.setMinWidth(width/7);
+        originColumn.setMinWidth(width / 7);
         originColumn.setCellValueFactory(new PropertyValueFactory<>("origin"));
         //Destination column
         TableColumn<Schedule, String> destinationColumn = new TableColumn<>("Destination");
-        destinationColumn.setMinWidth(width/7);
+        destinationColumn.setMinWidth(width / 7);
         destinationColumn.setCellValueFactory(new PropertyValueFactory<>("destination"));
         //Delay column
         TableColumn<Schedule, String> delayColumn = new TableColumn<>("Delay");
-        delayColumn.setMinWidth(width/7);
+        delayColumn.setMinWidth(width / 7);
         delayColumn.setCellValueFactory(new PropertyValueFactory<>("delay"));
         //DelayReason column
         TableColumn<Schedule, String> delayReasonColumn = new TableColumn<>("DelayReason");
-        delayReasonColumn.setMinWidth(width/7);
+        delayReasonColumn.setMinWidth(width / 7);
         delayReasonColumn.setCellValueFactory(new PropertyValueFactory<>("delayReason"));
 
         table = new TableView<>();
@@ -154,21 +158,21 @@ public class databaseOperations1 extends Pane {
         table.getColumns().addAll(idColumn, typeColumn, startTimeColumn, originColumn, destinationColumn, delayColumn, delayReasonColumn);
         //System.out.println(height);
         table.setPrefHeight(height);
-        table.setOnMousePressed(e -> {
-            if (e.isPrimaryButtonDown() && e.getClickCount() == 2) {
-                //System.out.println(table.getSelectionModel().getSelectedItem().getId()); -----------------------------------------------------------------
+        table.setOnMousePressed(e -> 
+                {
+                    if (e.isPrimaryButtonDown() && e.getClickCount() == 2)
+                    {
+                        //System.out.println(table.getSelectionModel().getSelectedItem().getId()); -----------------------------------------------------------------
 
-                //schedulePane.getChildren().clear();
-                
-                //getGoods();
-                getGoods(table.getSelectionModel().getSelectedItem().getId());
-                
-                //schedulePane.getChildren().clear();
-                //vBox.getChildren().clear();
+                        //schedulePane.getChildren().clear();
+                        //getGoods();
+                        getGoods(table.getSelectionModel().getSelectedItem().getId());
 
-                // 
-                //schedulePane.getChildren().add(getGoodsFromDatabase());
-            }
+                        //schedulePane.getChildren().clear();
+                        //vBox.getChildren().clear();
+                        // 
+                        //schedulePane.getChildren().add(getGoodsFromDatabase());
+                    }
         });
         VBox vBox = new VBox();
         vBox.getChildren().addAll(table);
@@ -176,28 +180,29 @@ public class databaseOperations1 extends Pane {
         return schedulePane;
     }
 
-    public Pane getGoods(String scheduleID) {
+    public Pane getGoods(String scheduleID)
+    {
         schedulePane.getChildren().clear();
 
         //Id column
         TableColumn<Goods, String> idColumn = new TableColumn<>("Id");
-        idColumn.setMinWidth(width/5);
+        idColumn.setMinWidth(width / 5);
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         //Product column
         TableColumn<Goods, String> productColumn = new TableColumn<>("Product");
-        productColumn.setMinWidth(width/5);
+        productColumn.setMinWidth(width / 5);
         productColumn.setCellValueFactory(new PropertyValueFactory<>("product"));
         //Weight column
         TableColumn<Goods, String> weightColumn = new TableColumn<>("Weight");
-        weightColumn.setMinWidth(width/5);
+        weightColumn.setMinWidth(width / 5);
         weightColumn.setCellValueFactory(new PropertyValueFactory<>("weight"));
         //Destination column
         TableColumn<Goods, String> destinationColumn = new TableColumn<>("Destination");
-        destinationColumn.setMinWidth(width/5);
+        destinationColumn.setMinWidth(width / 5);
         destinationColumn.setCellValueFactory(new PropertyValueFactory<>("destination"));
         //Schedule column
         TableColumn<Goods, String> scheduleColumn = new TableColumn<>("Schedule");
-        scheduleColumn.setMinWidth(width/5);
+        scheduleColumn.setMinWidth(width / 5);
         scheduleColumn.setCellValueFactory(new PropertyValueFactory<>("schedule"));
 
         goodsTable = new TableView<>();
@@ -207,13 +212,15 @@ public class databaseOperations1 extends Pane {
         goodsTable.setTranslateY(0);
 
         Button back = new Button("Back");
-        back.setOnAction(e -> {
-            getSchedule();
+        back.setOnAction(e -> 
+                {
+                    getSchedule();
         });
         Button load = new Button("Mark as loaded");
-        load.setOnAction(e -> {
-            System.out.println("The status is now set to: Loaded");
-            getSchedule();
+        load.setOnAction(e -> 
+                {
+                    System.out.println("The status is now set to: Loaded");
+                    getSchedule();
         });
 
         HBox hBox = new HBox();
@@ -232,46 +239,52 @@ public class databaseOperations1 extends Pane {
         return schedulePane;
     }
 
-    public ObservableList<Schedule> getScheduleFromDatabase() {
-        ObservableList<Schedule> schedule = FXCollections.observableArrayList();
-        schedule.add(new Schedule("0000001", "Goods", "10:30", "�lesund", "Trondheim", "5 minutes", "Traffic"));
-        schedule.add(new Schedule("0000002", "Goods", "11:55", "�lesund", "Molde", "", ""));
-        schedule.add(new Schedule("0000003", "Goods", "14:10", "�lesund", "Ålesund", "50 minutes", "Snow"));
+    public ObservableList<ScheduleCom> getScheduleFromDatabase()
+    {
+        ObservableList<ScheduleCom> schedule = FXCollections.observableArrayList();
 
-        /*
-			try{
-				connection = getConnection();
-				pst = connection.prepareStatement("SELECT * FROM `Schedule`");
-				rs = pst.executeQuery();
-				while(rs.next()){			
-					schedule.add(new Schedule(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));					
-				}			
-			}catch(Exception e){			
-			}
-         */
-        return schedule;
+        try
+        {
+            Connection connection = getConnection();
+            PreparedStatement pst = connection.prepareStatement("SELECT * FROM dbo.Schedule");
+            ResultSet rs = pst.executeQuery();
+            
+            while(rs.next())
+            {
+                schedule.add(new ScheduleCom(rs.getString("ScheduleID"), rs.getString("OrderID"), rs.getString(""), rs.getString("Date"), rs.getString("Time")));
+            }
+            connection.close();
+            return schedule;
+        } catch (Exception e)
+        {
+            return schedule;
+        }
+        
     }
 
-    public ObservableList<Goods> getGoodsFromDatabase(String scheduleID) {
+    public ObservableList<Goods> getGoodsFromDatabase(String scheduleID)
+    {
         ObservableList<Goods> goods = FXCollections.observableArrayList();
-        
-        
+
         // (SELECT * FROM dbo.Pallet WHERE scheduleID='"+scheduleID+"'")
-        if(scheduleID.contains("0000001")){
+        if (scheduleID.contains("0000001"))
+        {
             goods.add(new Goods("0001", "0000001", "31 kg", "Trondheim", "Taco Shell"));
             goods.add(new Goods("0002", "0000001", "47 kg", "Trondheim", "Taco Pulver"));
             goods.add(new Goods("0003", "0000001", "76 kg", "Trondheim", "Taco Saus"));
             goods.add(new Goods("0004", "0000001", "21 kg", "Trondheim", "Taco wraps"));
         }
         // (SELECT * FROM dbo.Pallet WHERE scheduleID='"+scheduleID+"'")
-        if(scheduleID.contains("0000002")){
+        if (scheduleID.contains("0000002"))
+        {
             goods.add(new Goods("0005", "0000002", "100 kg", "Molde", "Melk"));
             goods.add(new Goods("0006", "0000002", "57 kg", "Molde", "Sm�r"));
             goods.add(new Goods("0007", "0000002", "87 kg", "Molde", "R�mme"));
             goods.add(new Goods("0008", "0000002", "45 kg", "Molde", "Biola"));
         }
         // (SELECT * FROM dbo.Pallet WHERE scheduleID='"+scheduleID+"'")
-        if(scheduleID.contains("0000003")){
+        if (scheduleID.contains("0000003"))
+        {
             goods.add(new Goods("0009", "0000003", "250 kg", "Ålesund", "Coca Cola"));
             goods.add(new Goods("0010", "0000003", "250 kg", "Ålesund", "Fanta"));
             goods.add(new Goods("0011", "0000003", "250 kg", "Ålesund", "Urge"));
@@ -299,24 +312,25 @@ public class databaseOperations1 extends Pane {
          */
         return goods;
     }
-    
-    public String getScheduleTest(){
+
+    public String getScheduleTest()
+    {
         try
         {
             Connection connection = getConnection();
             PreparedStatement pst = connection.prepareStatement("SELECT * FROM dbo.UserLogin");
             ResultSet rs = pst.executeQuery();
-            if(rs.next()){
-                
+            if (rs.next())
+            {
+
                 //System.out.println("From Database: " + rs.getString(2));
-                
-                
             }
             return rs.getString(2);
         } catch (Exception e)
         {
-            
+
         }
         return null;
     }
+
 }
