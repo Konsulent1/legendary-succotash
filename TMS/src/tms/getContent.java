@@ -35,10 +35,24 @@ public class getContent {
 		
 		return schedule;
 	}
+        
+        public Pane getScheduleCom(){
+		//ContentBox schedule = new ContentBox(contentWidth, contentHeight);
+		//schedule.setFill(Color.DARKSLATEGRAY);
+		//return schedule;
+                ContentBox schedule = new ContentBox(contentWidth, contentHeight);
+		//schedule.setFill(Color.DARKSLATEGRAY);
+		
+		schedule.getChildren().addAll(db1.getScheduleCom());
+		
+		return schedule;
+	}
 	
 	public Pane getLoad(){
 		ContentBox load = new ContentBox(contentWidth, contentHeight);
-		load.setFill(Color.DIMGREY);
+                //load.getChildren().addAll(db1.getLoaded());
+                
+		//load.setFill(Color.DIMGREY);
 		return load;		
 	}
 	
