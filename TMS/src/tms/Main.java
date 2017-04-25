@@ -323,7 +323,7 @@ public class Main extends Application {
 		});
 
 		// SCHEDULE BUTTON
-		Button schedule = new Button("Schedule");
+		Button schedule = new Button("Schedule (dummy data)");
 		schedule.setStyle(buttonStyles.getButtonStyle("iPadDark"));
 		schedule.setPrefSize(prefWidth, prefHeight);
 		schedule.setTranslateX((widthOfMenu / 2) - (prefWidth / 2));
@@ -365,7 +365,7 @@ public class Main extends Application {
 		load.setPrefSize(prefWidth, prefHeight);
 		load.setTranslateX((widthOfMenu / 2) - (prefWidth / 2));
 		//load.setTranslateY((heightOfScreen * 0.3) + 20);
-                load.setTranslateY((widthOfMenu / 2) - (prefWidth / 2) + (heightOfScreen * 0.2) + 20);
+                load.setTranslateY((widthOfMenu / 2) - (prefWidth / 2) + (heightOfScreen * 0.3) + 30);
                 load.setOnMouseEntered(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent t) {
@@ -383,16 +383,16 @@ public class Main extends Application {
 		load.setOnAction(e -> {
 			//System.out.println("LOAD CLICKED");
 			content.getChildren().clear();
-			content.getChildren().add(get.getLoad());
+			//content.getChildren().add(get.getLoad());
 		});
 
 		// UNLOAD BUTTON
-		Button unload = new Button("Unload");
+		Button unload = new Button("Schedule (Com)");
 		unload.setStyle(buttonStyles.getButtonStyle("iPadDark"));
 		unload.setPrefSize(prefWidth, prefHeight);
 		unload.setTranslateX((widthOfMenu / 2) - (prefWidth / 2));
 		//unload.setTranslateY((heightOfScreen * 0.4) + 30);
-                unload.setTranslateY((widthOfMenu / 2) - (prefWidth / 2) + (heightOfScreen * 0.3) + 30);
+                unload.setTranslateY((widthOfMenu / 2) - (prefWidth / 2) + (heightOfScreen * 0.2) + 20);
                 unload.setOnMouseEntered(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent t) {
@@ -409,10 +409,14 @@ public class Main extends Application {
 		});
 		unload.setOnAction(e -> {
 			// System.out.println("UNLOAD CLICKED");
-			content.getChildren().clear();
-			content.getChildren().add(get.getUnload());
+			//content.getChildren().clear();
+			//content.getChildren().add(get.getUnload());
                         //System.out.println(db1.getScheduleTest());
                         //System.out.println("UNLOAD CLICKED");
+                        
+                        content.getChildren().clear();
+                        //System.out.println("Schedule Button Pressed");
+			content.getChildren().add(get.getScheduleCom());
 		});
                 
                 /*
