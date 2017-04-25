@@ -1,5 +1,6 @@
 package tms;
 
+import java.util.Collection;
 import java.util.List;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,5 +17,6 @@ public class Order
     private int employeeID;
     private String placedDate;
     private String invoiceDate;
-    private List<Orderline> orderline;
+    private List<Orderline> orderLines;
+    private boolean active;
 }

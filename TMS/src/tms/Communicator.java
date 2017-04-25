@@ -49,6 +49,15 @@ public class Communicator
         orderlinesUrl = "/orderlines";
     }
     
+    /*public static void main(String[] args)
+    {
+        Communicator comm = new Communicator();
+        List<Order> ord = comm.ordersGet();
+        //System.out.println(ord.toString());
+        System.out.println(ord.get(0).toString());
+    }*/
+    
+    
     /**
      * 
      * @return 

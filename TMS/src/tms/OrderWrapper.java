@@ -1,5 +1,6 @@
 package tms;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,7 +24,7 @@ public class OrderWrapper
      */
     public boolean retrieveAllOrders()
     {
-        orders = comm.ordersGet();
+        orders = new ArrayList<>(comm.ordersGet());
         if (orders != null) {
             return true;
         } else {
